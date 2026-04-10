@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 public class CharacterMovement: IFixedTickable
@@ -13,10 +11,10 @@ public class CharacterMovement: IFixedTickable
     
 
     [Inject]
-    private void Construct(IInput  input, CharacterStatsConfig characterStatsConfig, Character character)
+    private void Construct(IInput  input, Character character)
     {
         _input = input;
-        Speed = characterStatsConfig.Speed;
+        Speed = character.Speed;
         _transform = character.transform;
         _rb = character.GetComponent<Rigidbody2D>();
     }
