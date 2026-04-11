@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CharacterStatsConfig
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 25
-  <Speed>k__BackingField: 8
+  <Speed>k__BackingField: 4

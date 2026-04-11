@@ -9,8 +9,10 @@ public class Character : MonoBehaviour, IEnemyTarget
     private int _maxHelth;
     private int _healht;
 
+
     private IMouseInput _mouseInput;
 
+    public Vector2 MoveDirection { get; private set; }
     public Vector2 AimDirection { get; private set; }
 
     public float Speed { get; private set; }
@@ -34,6 +36,10 @@ public class Character : MonoBehaviour, IEnemyTarget
     public void TakeDamage()
     {
         Debug.Log("Im take damage");
+    }
+    public void SetMoveDirection(Vector2 direction)
+    {
+        MoveDirection = direction;
     }
     private void UpdateAimDirection()
     {
