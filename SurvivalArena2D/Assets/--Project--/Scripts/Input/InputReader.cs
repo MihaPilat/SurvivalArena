@@ -20,7 +20,7 @@ public class InputReader : IInitializable, ITickable, IInput
     public void Tick()
     {
         Move = _input.Character.Move.ReadValue<Vector2>();
-        Attack = _input.Character.Attack.IsPressed();
+        Attack = _input.Character.Attack.WasPressedThisFrame();
     }
 
 }

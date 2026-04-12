@@ -9,6 +9,7 @@ public class Character : MonoBehaviour, IEnemyTarget
     private int _maxHelth;
     private int _healht;
 
+    private IWeapon _currentWeapon;
 
     private IMouseInput _mouseInput;
 
@@ -30,9 +31,19 @@ public class Character : MonoBehaviour, IEnemyTarget
     private void Update()
     {
         UpdateAimDirection();
+        //пиу пиу
     }
 
+    public void SetWeapon(IWeapon weapon)
+    {
+        _currentWeapon = weapon;
+    }
 
+    public void Attack()
+    {
+        _currentWeapon?.Attack(transform.position, AimDirection);
+        Debug.Log("t4556364");
+    }
     public void TakeDamage()
     {
         Debug.Log("Im take damage");

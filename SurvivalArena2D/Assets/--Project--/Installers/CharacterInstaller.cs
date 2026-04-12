@@ -11,16 +11,27 @@ public class CharacterInstaller : MonoInstaller
     [SerializeField] private Transform _characterSpawnPoint;
     [SerializeField] private CharacterStatsConfig _characterStatsConfig;
 
+    private Character _character;
     public override void InstallBindings()
     {
         BindConfig();
         BindInstance();
+        BindWeaponController();
+    }
+
+    private void BindWeaponController()
+    {
+        var weaponController = _character.GetComponentInChildren<WeaponController>();
+
+        Container.Bind<IWeaponController>()
+            .FromInstance(weaponController)
+            .AsSingle();
     }
 
     private void BindInstance()
     {
-        Character character = Container.InstantiatePrefabForComponent<Character>(_characterPrefab, _characterSpawnPoint.position, Quaternion.identity, null);
-        Container.BindInterfacesAndSelfTo<Character>().FromInstance(character).AsSingle().NonLazy();
+        _character = Container.InstantiatePrefabForComponent<Character>(_characterPrefab, _characterSpawnPoint.position, Quaternion.identity, null);
+        Container.BindInterfacesAndSelfTo<Character>().FromInstance(_character).AsSingle().NonLazy();
         Container.BindInterfacesTo<CharacterMovement>().AsSingle().NonLazy();
     }
 
