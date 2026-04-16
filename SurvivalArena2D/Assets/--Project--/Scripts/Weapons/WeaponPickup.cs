@@ -8,10 +8,11 @@ public class WeaponPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        IWeaponController weaponController = GetComponentInChildren<IWeaponController>();
-
-        if(weaponController!=null)
+        IWeaponController weaponController =collision.GetComponentInChildren<IWeaponController>();
+        
+        if (weaponController!=null)
         {
+            Debug.Log("34234");
             weaponController.AddWeapon(_weaponPrefab);
             Destroy(gameObject);
         }

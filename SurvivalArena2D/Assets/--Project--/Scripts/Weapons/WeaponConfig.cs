@@ -10,5 +10,6 @@ public class WeaponConfig : ScriptableObject
 
     [Header("Ranged")]
     public GameObject ProjectilePrefab;
-    public float ProjectileSpeed;
+    public float ProjectileSpeed=12f;
+    public float ProjectileLifetime = 3f;
 }
