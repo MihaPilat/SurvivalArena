@@ -6,7 +6,8 @@ using Zenject;
 public class WeaponController : MonoBehaviour, IWeaponController
 {
     [SerializeField] private Character _character;
-    [SerializeField] private List<MonoBehaviour> _weaponBehaviours;
+    [SerializeField] private Transform _weaponHolder;
+    [SerializeField] private GameObject _startWeaponPrefab;
 
     private Dictionary<WeaponType, IWeapon> _weapons = new Dictionary<WeaponType, IWeapon>();
     private Dictionary<WeaponType, MonoBehaviour> _weaponObjects = new Dictionary<WeaponType, MonoBehaviour>();
@@ -18,20 +19,9 @@ public class WeaponController : MonoBehaviour, IWeaponController
     {
         _input = input;
     }
-    private void Awake()
+    private void Start()
     {
-        foreach (var wb in _weaponBehaviours)
-        {
-            if (wb is IWeapon weapon)
-            {
-                _weapons[weapon.Type] = weapon;
-                _weaponObjects[weapon.Type] = wb;
-            }
-
-            wb.gameObject.SetActive(false);
-        }
-
-        SetWeapon(WeaponType.Sword);
+        AddWeapon(_startWeaponPrefab);
     }
     private void Update()
     {
@@ -40,8 +30,27 @@ public class WeaponController : MonoBehaviour, IWeaponController
         if (_input.Attack)
         {
             _character.Attack();
-            Debug.Log("fdsfasfasdf");
         }
+    }
+    public void AddWeapon(GameObject weaponPrefab)
+    {
+        GameObject obj = Instantiate(weaponPrefab, _weaponHolder);
+        IWeapon weapon = obj.GetComponent<IWeapon>();
+        if (weapon == null)
+        {
+            Debug.LogError("Prefab has no IWeapon!");
+            return;
+        }
+
+        if (_weapons.ContainsKey(weapon.Type))
+        {
+            Destroy(obj);
+            return;
+        }
+
+        _weapons[weapon.Type] = weapon;
+        _weaponObjects[weapon.Type] = obj.GetComponent<MonoBehaviour>();
+        SetWeapon(weapon.Type);
     }
     public void SetWeapon(WeaponType type)
     {

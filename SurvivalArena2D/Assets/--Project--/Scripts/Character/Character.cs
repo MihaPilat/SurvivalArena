@@ -31,7 +31,6 @@ public class Character : MonoBehaviour, IEnemyTarget
     private void Update()
     {
         UpdateAimDirection();
-        //пиу пиу
     }
 
     public void SetWeapon(IWeapon weapon)
@@ -42,7 +41,6 @@ public class Character : MonoBehaviour, IEnemyTarget
     public void Attack()
     {
         _currentWeapon?.Attack(transform.position, AimDirection);
-        Debug.Log("t4556364");
     }
     public void TakeDamage()
     {
