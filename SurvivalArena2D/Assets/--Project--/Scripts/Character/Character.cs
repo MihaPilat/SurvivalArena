@@ -42,7 +42,7 @@ public class Character : MonoBehaviour, IEnemyTarget
     {
         _currentWeapon?.Attack(transform.position, AimDirection);
     }
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
         Debug.Log("Im take damage");
     }

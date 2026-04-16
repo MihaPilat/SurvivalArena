@@ -5,11 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class SwordSlashView : MonoBehaviour
 {
-    [SerializeField] private Sword _sword;
+    private Sword _sword;
     private Animator _animator;
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _sword = GetComponentInParent<Sword>();
     }
     private void OnEnable()
     {
