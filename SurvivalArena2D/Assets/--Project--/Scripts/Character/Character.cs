@@ -40,7 +40,7 @@ public class Character : MonoBehaviour, IEnemyTarget
 
     public void Attack()
     {
-        _currentWeapon?.Attack(transform.position, AimDirection);
+        _currentWeapon?.Attack(transform.position, _mouseInput);
     }
     public void TakeDamage(int damage)
     {

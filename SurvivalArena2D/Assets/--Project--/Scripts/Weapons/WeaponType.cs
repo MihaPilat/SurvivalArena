@@ -2,5 +2,6 @@
 public enum WeaponType
 {
     Sword,
-    Bow
+    Bow,
+    MagicStaff
 }

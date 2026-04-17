@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random=UnityEngine.Random;
 
 public class Bow : MonoBehaviour, IWeapon
 {
@@ -14,9 +15,11 @@ public class Bow : MonoBehaviour, IWeapon
     public int Damage => _config.Damage;
     public WeaponConfig Config => _config;
 
+    private ProjectileFactory _factory = new ProjectileFactory();
+
     private float _lastAttackTime;
 
-    public void Attack(Vector2 origin, Vector2 direction)
+    public void Attack(Vector2 origin, IMouseInput mouseInput)
     {
         if (!CanAttack())
             return;
@@ -25,6 +28,18 @@ public class Bow : MonoBehaviour, IWeapon
 
         OnAttack?.Invoke();
         Debug.Log("Attack Bow");
+
+        Vector2 dir = (mouseInput.MouseWorldPosition - (Vector2)_firePoint.position).normalized;
+
+        float spread = Random.Range(-_config.Spread, _config.Spread);
+        dir = Quaternion.Euler(0, 0, spread) * dir;
+
+        _factory.Create(
+        _config.ProjectilePrefab,
+        _firePoint.position,
+        dir,
+        _config
+    );
     }
     public void Rotate(Vector2 direction)
     {

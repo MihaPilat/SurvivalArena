@@ -6,6 +6,6 @@ public interface IWeapon
 {
     WeaponType Type { get; }
     WeaponConfig Config { get; }
-    void Attack(Vector2 origin, Vector2 direction);
+    void Attack(Vector2 origin, IMouseInput mouseInput);
     void Rotate(Vector2 direction);
 }

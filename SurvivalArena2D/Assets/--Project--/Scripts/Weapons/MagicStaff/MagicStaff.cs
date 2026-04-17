@@ -3,14 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sword : MonoBehaviour, IWeapon
+public class MagicStaff : MonoBehaviour, IWeapon
 {
     public event Action OnAttack;
 
     [SerializeField] private WeaponConfig _config;
+    [SerializeField] private Transform _firePoint;
+
     public WeaponType Type => _config.Type;
-    public int Damage => _config.Damage;
+
     public WeaponConfig Config => _config;
+
+    public int Damage => _config.Damage;
+
+    private ProjectileFactory _factory = new ProjectileFactory();
 
     private float _lastAttackTime;
 
@@ -22,13 +28,19 @@ public class Sword : MonoBehaviour, IWeapon
         _lastAttackTime = Time.time;
 
         OnAttack?.Invoke();
-        Debug.Log("Attack sword");
+
+        Vector2 dir = (mouseInput.MouseWorldPosition - (Vector2)_firePoint.position).normalized;
+
+        _factory.Create(
+        _config.ProjectilePrefab,
+        _firePoint.position,
+        dir,
+        _config);
     }
 
     public void Rotate(Vector2 direction)
     {
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+
     }
 
     private bool CanAttack()

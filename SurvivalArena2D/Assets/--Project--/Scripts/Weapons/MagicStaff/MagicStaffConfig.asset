@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a90f81b656b5a544081ec84de78764f9, type: 3}
-  m_Name: BowConfig
+  m_Name: MagicStaffConfig
   m_EditorClassIdentifier: 
-  Type: 1
-  Damage: 5
-  AttackCooldown: 0.2
-  ProjectilePrefab: {fileID: 5098389133151337143, guid: d29ee81e30a608640b808db1f32504ac, type: 3}
-  Spread: 5
+  Type: 2
+  Damage: 10
+  AttackCooldown: 0.5
+  ProjectilePrefab: {fileID: 1170835258638870793, guid: 7c1ef96b0bde70f429e258080dcf6a84, type: 3}
+  Spread: 2
   ProjectileSpeed: 12
   ProjectileLifetime: 3
+  MagicRadius: 1.5
