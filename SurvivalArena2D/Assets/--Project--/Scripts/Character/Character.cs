@@ -21,11 +21,13 @@ public class Character : MonoBehaviour, IEnemyTarget
     public Vector3 Position => transform.position;
 
     [Inject]
-    private void Construct(CharacterStatsConfig characterStatsConfig, IMouseInput mouseInput)
+    private void Construct(CharacterStatsConfig characterStatsConfig, IMouseInput mouseInput, CameraService cameraService)
     {
         _healht = _maxHelth = characterStatsConfig.MaxHealth;
         Speed = characterStatsConfig.Speed;
         _mouseInput = mouseInput;
+        cameraService.SetTarget(transform);
+
     }
 
     private void Update()
