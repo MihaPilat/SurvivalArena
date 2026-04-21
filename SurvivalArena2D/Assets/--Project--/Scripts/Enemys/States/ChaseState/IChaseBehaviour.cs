@@ -1,4 +1,4 @@
 public interface IChaseBehaviour
 {
-    IState GetNextState(float distance,float stopDistance);
+    void TrySwitchState(float distance,float stopDistance, IStateSwitcher stateSwitcher);
 }

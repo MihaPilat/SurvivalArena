@@ -16,10 +16,7 @@ public class ChaseState : EnemyState
 
         float distance = Vector3.Distance(_enemyEntity.transform.position, _enemyEntity.Character.transform.position);
 
-        IState next = _behaviour.GetNextState(distance,_enemyEntity.Config.StopDistance);
-
-        if (next != null)
-            StateSwitcher.SwitchState(next);
+        _behaviour.TrySwitchState(distance,_enemyEntity.Config.StopDistance,_enemyEntity.StateSwitcher);
     }
     public override void Exit() => _enemyEntity.Agent.isStopped = true;
 }

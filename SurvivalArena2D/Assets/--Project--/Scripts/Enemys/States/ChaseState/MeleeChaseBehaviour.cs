@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class MeleeChaseBehaviour : IChaseBehaviour
 {
-    public IState GetNextState(float distance, float stopDistance)
+    public void TrySwitchState(float distance, float stopDistance, IStateSwitcher stateSwitcher)
     {
         if (distance <= stopDistance)
-            return null;
-
-        return null;
+            stateSwitcher.SwitchState<IdleState>();
     }
 
 }

@@ -20,13 +20,6 @@ public class StateMachine : IStateSwitcher
         ApplyState(state, typeof(T).Name);
 
     }
-    public void SwitchState(IState nextState)
-    {
-        if (nextState == null) return;
-
-        IState state = _states.FirstOrDefault(s => s.GetType() == nextState.GetType());
-        ApplyState(state, nextState.GetType().Name);
-    }
     public void Update() => _currentState.Update();
     private void ApplyState(IState state, string typeName)
     {
