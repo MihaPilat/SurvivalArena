@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5057498106408404192}
   - component: {fileID: 3932069359513419043}
   - component: {fileID: 6755316425680104812}
-  - component: {fileID: 1522973913796167905}
+  - component: {fileID: 8572190378501191820}
   m_Layer: 0
   m_Name: MagicStaffView
   m_TagString: Untagged
@@ -107,7 +107,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1522973913796167905
+--- !u!114 &8572190378501191820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,9 +116,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4282131780650861541}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 868ac2e5c4d8f054e8c54a2ffcaeafc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 980c2983336e2a1499b29cae9456c871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponSource: {fileID: 1647318827495149943}
 --- !u!1 &5608088288709735209
 GameObject:
   m_ObjectHideFlags: 0

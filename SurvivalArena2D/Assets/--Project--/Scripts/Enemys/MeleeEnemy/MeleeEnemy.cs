@@ -9,7 +9,8 @@ public class MeleeEnemyEntity : EnemyEntity
     {
         return new List<IState>()
         {
-            new ChaseState(this,_chaseBehaviour)
+            new ChaseState(this,_chaseBehaviour),
+            new IdleState(this)
         };
     }
 }

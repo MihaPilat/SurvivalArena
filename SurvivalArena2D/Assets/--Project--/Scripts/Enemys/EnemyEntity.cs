@@ -17,7 +17,7 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     public NavMeshAgent Agent => _agent;
     public Character Character => _character;
     public EnemyConfig Config => _config;
-
+    public Transform Target => _character.transform;
     public IStateSwitcher StateSwitcher => _stateMachine;
     [Inject]
     protected void Construct(Character character)
@@ -31,12 +31,14 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     private void Start()
     {
         _stateMachine = new StateMachine(AddStates());
+        _agent.speed = _config.Speed;
+        _agent.updateRotation = false;
+        _agent.updateUpAxis = false;
     }
     private void Update()
     {
         _stateMachine.Update();
     }
-
     public void TakeDamage(int damage)
     {
         Debug.Log("AAAAAAAAAAA");

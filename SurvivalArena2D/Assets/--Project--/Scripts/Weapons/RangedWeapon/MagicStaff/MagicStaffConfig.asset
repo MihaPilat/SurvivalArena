@@ -19,4 +19,5 @@ MonoBehaviour:
   Spread: 2
   ProjectileSpeed: 12
   ProjectileLifetime: 3
+  RotateToTarget: 0
   MagicRadius: 1.5

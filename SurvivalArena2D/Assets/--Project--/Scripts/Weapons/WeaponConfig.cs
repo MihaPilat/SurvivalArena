@@ -13,6 +13,7 @@ public class WeaponConfig : ScriptableObject
     public float Spread = 2f;
     public float ProjectileSpeed=12f;
     public float ProjectileLifetime = 3f;
+    public bool RotateToTarget=true;
 
     [Header("Magic")]
     public float MagicRadius = 1.5f;

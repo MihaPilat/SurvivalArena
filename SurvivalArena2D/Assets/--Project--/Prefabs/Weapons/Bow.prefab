@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 6310678171579196295}
   - component: {fileID: 7556547496048015124}
   - component: {fileID: 5376392678730067819}
-  - component: {fileID: 8598071907161777854}
+  - component: {fileID: 1823316339900230467}
   m_Layer: 0
   m_Name: BowView
   m_TagString: Untagged
@@ -186,7 +186,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8598071907161777854
+--- !u!114 &1823316339900230467
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,6 +195,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1953698647831020228}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39ca50ccce457344ea2cb8b86109f535, type: 3}
+  m_Script: {fileID: 11500000, guid: 980c2983336e2a1499b29cae9456c871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponSource: {fileID: 6346745118484665493}

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ChaseState : EnemyState
@@ -12,9 +10,9 @@ public class ChaseState : EnemyState
     public override void Enter() => _enemyEntity.Agent.isStopped = false;
     public override void Update()
     {
-        _enemyEntity.Agent.SetDestination(_enemyEntity.Character.transform.position);
+        _enemyEntity.Agent.SetDestination(_enemyEntity.Target.position);
 
-        float distance = Vector3.Distance(_enemyEntity.transform.position, _enemyEntity.Character.transform.position);
+        float distance = Vector3.Distance(_enemyEntity.transform.position, _enemyEntity.Target.position);
 
         _behaviour.TrySwitchState(distance,_enemyEntity.Config.StopDistance,_enemyEntity.StateSwitcher);
     }

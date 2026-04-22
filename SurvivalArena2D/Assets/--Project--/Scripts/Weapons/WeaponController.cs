@@ -1,23 +1,26 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 public class WeaponController : MonoBehaviour, IWeaponController
 {
+    public event Action<IWeapon> OnWeaponChanged;
+
     [SerializeField] private Character _character;
     [SerializeField] private Transform _weaponHolder;
     [SerializeField] private GameObject _startWeaponPrefab;
 
     private Dictionary<WeaponType, IWeapon> _weapons = new Dictionary<WeaponType, IWeapon>();
-    private Dictionary<WeaponType, MonoBehaviour> _weaponObjects = new Dictionary<WeaponType, MonoBehaviour>();
     private IWeapon _currentWeapon;
     private IInput _input;
+    private DiContainer _container;
 
     [Inject]
-    private void Construct(IInput input)
+    private void Construct(IInput input, DiContainer container)
     {
         _input = input;
+        _container = container;
     }
     private void Start()
     {
@@ -35,34 +38,41 @@ public class WeaponController : MonoBehaviour, IWeaponController
     public void AddWeapon(GameObject weaponPrefab)
     {
         GameObject obj = Instantiate(weaponPrefab, _weaponHolder);
-        IWeapon weapon = obj.GetComponent<IWeapon>();
-        if (weapon == null)
-        {
-            Debug.LogError("Prefab has no IWeapon!");
-            return;
-        }
 
-        if (_weapons.ContainsKey(weapon.Type))
+        _container.InjectGameObject(obj);
+
+        if (obj.TryGetComponent(out IWeapon weapon))
         {
+            if (_weapons.ContainsKey(weapon.Type))
+            {
+                Destroy(obj);
+                return;
+            }
+
+            _weapons[weapon.Type] = weapon;
+
+            obj.SetActive(false);
+
+            SetWeapon(weapon.Type);
+        }
+        else
+        {
+            Debug.LogError($"Prefab {weaponPrefab.name} has no IWeapon component!");
             Destroy(obj);
-            return;
         }
-
-        _weapons[weapon.Type] = weapon;
-        _weaponObjects[weapon.Type] = obj.GetComponent<MonoBehaviour>();
-        SetWeapon(weapon.Type);
     }
     public void SetWeapon(WeaponType type)
     {
-        if (!_weapons.ContainsKey(type))
+        if (!_weapons.TryGetValue(type, out var targetWeapon))
             return;
 
-        foreach (var obj in _weaponObjects.Values)
-            obj.gameObject.SetActive(false);
+        if (_currentWeapon != null)
+            ((MonoBehaviour)_currentWeapon).gameObject.SetActive(false);
 
-        _weaponObjects[type].gameObject.SetActive(true);
+        _currentWeapon = targetWeapon;
+        ((MonoBehaviour)_currentWeapon).gameObject.SetActive(true);
 
-        _currentWeapon = _weapons[type];
+        OnWeaponChanged?.Invoke(_currentWeapon);
         _character.SetWeapon(_currentWeapon);
     }
 }
