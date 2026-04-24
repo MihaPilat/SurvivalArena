@@ -92,7 +92,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.075097084, y: 0.6115196}
@@ -242,6 +242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471b7342b0f8aed48965bfdd491ed5f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hitColor: {r: 1, g: 0, b: 0, a: 0.7}
+  _hitDuration: 0.5
 --- !u!95 &334800359635665749
 Animator:
   serializedVersion: 5

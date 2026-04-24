@@ -49,6 +49,10 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     {
         _stateMachine.Update();
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        HandleContactDamage(collision);
+    }
     public void TakeDamage(int damage)
     {
         _currentHp -= damage;
@@ -66,4 +70,17 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
         OnDied?.Invoke();
     }
     protected abstract List<IState> AddStates();
+    private void HandleContactDamage(Collider2D other)
+    {
+        if (IsDie) return;
+
+        if (other.TryGetComponent(out IDamageable damageable))
+        {
+            if (other.GetComponent<Character>() != null)
+            {
+                damageable.TakeDamage(_config.ContactDamage);
+                Debug.Log($"Enemy dealt {_config.ContactDamage} contact damage to Player");
+            }
+        }
+    }
 }

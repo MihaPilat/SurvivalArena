@@ -7,6 +7,7 @@ public class EnemyConfig : ScriptableObject
     public float Speed = 3.5f;
     public float StopDistance = 1.5f;
     public float WaitingTime = 1f;
+    public int ContactDamage = 5;
 
     [Header("Ranged")]
     public float AttackRange = 10f;

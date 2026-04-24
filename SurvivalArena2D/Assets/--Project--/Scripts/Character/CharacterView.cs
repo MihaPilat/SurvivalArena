@@ -1,11 +1,17 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class CharacterView : MonoBehaviour
 {
-    [SerializeField] private Character _character;
+    private Character _character;
 
-    [SerializeField] private Animator _animator;
+    private Animator _animator;
+    private void Awake()
+    {
+        _character = GetComponentInParent<Character>();
+        _animator = GetComponent<Animator>();
+    }
     private void Update()
     {
         Flip();
