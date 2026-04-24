@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,6 +8,9 @@ using Zenject;
 
 public abstract class EnemyEntity : MonoBehaviour, IDamageable
 {
+    public event Action OnHit;
+    public event Action OnDied;
+
     [SerializeField] private EnemyConfig _config;
 
     protected StateMachine _stateMachine;
@@ -18,7 +21,12 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     public Character Character => _character;
     public EnemyConfig Config => _config;
     public Transform Target => _character.transform;
+
+    public bool IsDie;
     public IStateSwitcher StateSwitcher => _stateMachine;
+
+    private float _currentHp;
+
     [Inject]
     protected void Construct(Character character)
     {
@@ -34,6 +42,8 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
         _agent.speed = _config.Speed;
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
+
+        _currentHp = _config.Health;
     }
     private void Update()
     {
@@ -41,7 +51,19 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     }
     public void TakeDamage(int damage)
     {
-        Debug.Log("AAAAAAAAAAA");
+        _currentHp -= damage;
+
+        Debug.Log($"Enemy took {damage} damage. Health: {_currentHp}");
+
+        if (_currentHp <= 0)
+            Die();
+        else
+            OnHit?.Invoke();
+    }
+    private void Die()
+    {
+        IsDie = true;
+        OnDied?.Invoke();
     }
     protected abstract List<IState> AddStates();
 }

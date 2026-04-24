@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb57dd8ec07e3d499971e8b23fd1f2a, type: 3}
   m_Name: MelleEnemyConfig
   m_EditorClassIdentifier: 
-  Health: 100
+  Health: 20
   Speed: 2
   StopDistance: 0.8
   WaitingTime: 1

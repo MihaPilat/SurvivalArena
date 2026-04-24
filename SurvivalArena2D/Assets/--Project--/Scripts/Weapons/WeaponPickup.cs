@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour
@@ -12,7 +10,7 @@ public class WeaponPickup : MonoBehaviour
         
         if (weaponController!=null)
         {
-            Debug.Log("34234");
+            Debug.Log($"Picked up: {_weaponPrefab.name}");
             weaponController.AddWeapon(_weaponPrefab);
             Destroy(gameObject);
         }

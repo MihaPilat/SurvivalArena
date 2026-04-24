@@ -24,5 +24,7 @@ public class IdleState : EnemyState
         {
             StateSwitcher.SwitchState<ChaseState>();
         }
+        if (_enemyEntity.IsDie)
+            StateSwitcher.SwitchState<DeathState>();
     }
 }
