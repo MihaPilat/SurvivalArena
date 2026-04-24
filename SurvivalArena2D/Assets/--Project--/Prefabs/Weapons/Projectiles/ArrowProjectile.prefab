@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5487831080524741838}
   - component: {fileID: 8135296208796797861}
-  - component: {fileID: 1351391546601960937}
   - component: {fileID: 6633528266922772887}
   - component: {fileID: 6252385227289700466}
+  - component: {fileID: 1351391546601960937}
   m_Layer: 0
   m_Name: ArrowProjectile
   m_TagString: Untagged
@@ -62,21 +62,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &1351391546601960937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5098389133151337143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc15524d679b64048a144709e0e0a69b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _targetLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!212 &6633528266922772887
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -174,3 +159,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7641499, y: 0.09711981}
   m_EdgeRadius: 0
+--- !u!114 &1351391546601960937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5098389133151337143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc15524d679b64048a144709e0e0a69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetLayer:
+    serializedVersion: 2
+    m_Bits: 256
