@@ -21,6 +21,9 @@ public class CharacterMovement: IFixedTickable
     }
     public void FixedTick()
     {
+        if (_character.IsDie)
+            return;
+
         Vector2 move = _input.Move.normalized;
         _character.SetMoveDirection(move);
         Vector2 target = _rb.position + move * Speed * Time.fixedDeltaTime;

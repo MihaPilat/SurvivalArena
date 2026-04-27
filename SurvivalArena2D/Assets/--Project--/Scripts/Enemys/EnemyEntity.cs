@@ -57,6 +57,8 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     }
     public void TakeDamage(int damage)
     {
+        if (IsDie || damage <= 0) return;
+
         _currentHp -= damage;
 
         Debug.Log($"Enemy took {damage} damage. Health: {_currentHp}");

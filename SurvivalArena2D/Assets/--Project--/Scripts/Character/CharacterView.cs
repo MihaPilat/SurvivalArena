@@ -4,6 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class CharacterView : MonoBehaviour
 {
+    private static readonly int SpeedHash = Animator.StringToHash("Speed");
+    private static readonly int HitHash = Animator.StringToHash("Hit");
+    private static readonly int IsDeadHash = Animator.StringToHash("IsDead");
+
     private Character _character;
 
     private Animator _animator;
@@ -18,14 +22,35 @@ public class CharacterView : MonoBehaviour
         UpdateAnimation();
 
     }
+    private void OnEnable()
+    {
+        if (_character != null)
+        {
+            _character.OnDamaged += PlayHitAnimation;
+            _character.OnDied += PlayDeathAnimation;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_character != null)
+        {
+            _character.OnDamaged -= PlayHitAnimation;
+            _character.OnDied -= PlayDeathAnimation;
+        }
+    }
 
     private void UpdateAnimation()
     {
         float speed = _character.MoveDirection.magnitude;
-        _animator.SetFloat("Speed", speed);
+        _animator.SetFloat(SpeedHash, speed);
     }
 
-    private void Flip()
+    private void PlayHitAnimation() => _animator.SetTrigger(HitHash);
+
+    private void PlayDeathAnimation() => _animator.SetBool(IsDeadHash, true);
+
+        private void Flip()
     {
         float dirX = _character.AimDirection.x;
 
