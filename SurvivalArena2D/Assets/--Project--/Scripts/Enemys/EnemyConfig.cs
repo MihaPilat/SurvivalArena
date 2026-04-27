@@ -10,7 +10,9 @@ public class EnemyConfig : ScriptableObject
     public int ContactDamage = 5;
 
     [Header("Ranged")]
-    public float AttackRange = 10f;
+    public float MinAttackRange = 5f;
+    public float MaxAttackRange = 8f;
+    public int Damage;
     public float AttackCooldown=5f;
     public GameObject ProjectilePrefab;
     public float Spread = 2f;

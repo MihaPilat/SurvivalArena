@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb57dd8ec07e3d499971e8b23fd1f2a, type: 3}
+  m_Name: RangeEnemyConfig
+  m_EditorClassIdentifier: 
+  Health: 100
+  Speed: 3.5
+  StopDistance: 1.5
+  WaitingTime: 1
+  ContactDamage: 5
+  MinAttackRange: 7
+  MaxAttackRange: 9
+  Damage: 5
+  AttackCooldown: 5
+  ProjectilePrefab: {fileID: 8903429456388645320, guid: de19f7d8127a641469bae072b072d864, type: 3}
+  Spread: 2
+  ProjectileSpeed: 6
+  ProjectileLifetime: 3

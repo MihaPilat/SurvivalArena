@@ -10,16 +10,11 @@ public abstract class Projectile : MonoBehaviour, IProjectile
 
     public virtual void Init(Vector2 direction, WeaponConfig config)
     {
-        if (_rb == null)
-            _rb = GetComponent<Rigidbody2D>();
-
-        _damage = config.Damage;
-        _rb.velocity = direction.normalized * config.ProjectileSpeed;
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        Destroy(gameObject, config.ProjectileLifetime);
+        InternalInit(direction, config.ProjectileSpeed, config.ProjectileLifetime, config.Damage);
+    }
+    public virtual void Init(Vector2 direction, EnemyConfig config)
+    {
+        InternalInit(direction, config.ProjectileSpeed, config.ProjectileLifetime, config.Damage);
     }
 
     protected void OnTriggerEnter2D(Collider2D other)
@@ -29,7 +24,6 @@ public abstract class Projectile : MonoBehaviour, IProjectile
 
         OnHit(other);
     }
-
     protected abstract void OnHit(Collider2D other);
 
     protected bool TryApplyDamage(Collider2D other)
@@ -45,6 +39,18 @@ public abstract class Projectile : MonoBehaviour, IProjectile
         }
 
         return false;
+    }
+    private void InternalInit(Vector2 direction, float speed, float lifetime, int damage)
+    {
+        if (_rb == null) _rb = GetComponent<Rigidbody2D>();
+
+        _damage = damage;
+        _rb.velocity = direction.normalized * speed;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+
+        Destroy(gameObject, lifetime);
     }
     private bool IsTargetLayer(int layer)
     {

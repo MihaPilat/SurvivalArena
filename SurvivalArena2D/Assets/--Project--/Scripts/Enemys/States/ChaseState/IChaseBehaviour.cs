@@ -1,4 +1,4 @@
 public interface IChaseBehaviour
 {
-    void TrySwitchState(float distance,float stopDistance, IStateSwitcher stateSwitcher);
+    void TrySwitchState(float distance,EnemyConfig config, IStateSwitcher stateSwitcher);
 }

@@ -10,6 +10,7 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
 {
     public event Action OnHit;
     public event Action OnDied;
+    public event Action OnAttack;
 
     [SerializeField] private EnemyConfig _config;
 
@@ -22,7 +23,8 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     public EnemyConfig Config => _config;
     public Transform Target => _character.transform;
 
-    public bool IsDie;
+    public bool IsDie => _isDie;
+    private bool _isDie;
     public IStateSwitcher StateSwitcher => _stateMachine;
 
     private float _currentHp;
@@ -64,10 +66,9 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
         else
             OnHit?.Invoke();
     }
-    private void Die()
+    public void TriggerAttack()
     {
-        IsDie = true;
-        OnDied?.Invoke();
+        OnAttack?.Invoke();
     }
     protected abstract List<IState> AddStates();
     private void HandleContactDamage(Collider2D other)
@@ -83,4 +84,10 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
             }
         }
     }
+    private void Die()
+    {
+        _isDie = true;
+        OnDied?.Invoke();
+    }
+
 }

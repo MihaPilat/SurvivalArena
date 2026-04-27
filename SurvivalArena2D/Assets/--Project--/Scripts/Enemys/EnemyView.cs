@@ -48,13 +48,20 @@ public class EnemyView : MonoBehaviour
     }
     void Update()
     {
-        if (_agent == null) return;
+        if (_enemyEntity == null || _enemyEntity.IsDie)
+            return;
 
-        float moveX = _agent.desiredVelocity.x;
-
-        if (Mathf.Abs(moveX) > 0.01f)
+        if (_agent != null && _agent.enabled && _agent.desiredVelocity.sqrMagnitude > 0.01f)
         {
-            Flip(moveX);
+            Flip(_agent.desiredVelocity.x);
+        }
+        else if (_enemyEntity != null && _enemyEntity.Target != null)
+        {
+            float directionToTarget = _enemyEntity.Target.position.x - transform.position.x;
+            if (Mathf.Abs(directionToTarget) > 0.1f)
+            {
+                Flip(directionToTarget);
+            }
         }
     }
     private void Flip(float xVelocity)
