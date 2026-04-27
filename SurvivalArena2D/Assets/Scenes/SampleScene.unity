@@ -1871,6 +1871,37 @@ MonoBehaviour:
   _characterPrefab: {fileID: -223301313523256223, guid: 141838c30fe013b4395cb0a2e61241c0, type: 3}
   _characterSpawnPoint: {fileID: 725579635}
   _characterStatsConfig: {fileID: 11400000, guid: f786b478671edf64d91e24a53cad6bf7, type: 2}
+--- !u!1 &1861557110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1861557112}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1861557112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861557110}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1905908977
 GameObject:
   m_ObjectHideFlags: 0
@@ -2381,3 +2412,4 @@ SceneRoots:
   - {fileID: 6194660000699231442}
   - {fileID: 280477754}
   - {fileID: 7444684629199730633}
+  - {fileID: 1861557112}
