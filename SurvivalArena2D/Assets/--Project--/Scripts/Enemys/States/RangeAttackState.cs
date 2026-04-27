@@ -1,4 +1,5 @@
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RangeAttackState : EnemyState
 {
@@ -16,6 +17,8 @@ public class RangeAttackState : EnemyState
     public override void Exit()
     {
         _enemyEntity.Agent.isStopped = false;
+
+        _lastAttackTime = Time.time + Random.Range(0, 2f);
     }
 
     public override void Update()

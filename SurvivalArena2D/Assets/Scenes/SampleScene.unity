@@ -1918,10 +1918,10 @@ MonoBehaviour:
   _allEnemies:
   - {fileID: 11400000, guid: a2d16e76637bf80448a93a0afa28e1a6, type: 2}
   - {fileID: 11400000, guid: efea311fbcac8b24495c310022d66a71, type: 2}
-  _spawnInterval: 10
+  _spawnInterval: 5
   _budgetGenerationRate: 10
   _minSpawnRadius: 10
-  _maxSpawnRadius: 20
+  _maxSpawnRadius: 35
 --- !u!1 &1905908977
 GameObject:
   m_ObjectHideFlags: 0

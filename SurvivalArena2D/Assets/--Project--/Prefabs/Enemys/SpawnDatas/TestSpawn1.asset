@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TestSpawn1
   m_EditorClassIdentifier: 
   Prefab: {fileID: 2898076527327865566, guid: 809087524f7d1474db80e4ff410120fe, type: 3}
-  Cost: 3
+  Cost: 6
   MinDangerLevel: 1
