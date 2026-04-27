@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
+using Zenject;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -11,11 +14,21 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _spawnInterval = 10f;
     [SerializeField] int _budgetGenerationRate = 10;
 
+    [SerializeField] private float _minSpawnRadius = 10f;
+    [SerializeField] private float _maxSpawnRadius = 20f;
+
+    private Transform _characterTransform;
+
     private float _dangerTimer;
     private float _spawnTimer;
     private int _currentDangerLevel = 1;
     private float _spawnBudget;
 
+    [Inject]
+    private void Construct(Character character)
+    {
+        _characterTransform = character.transform;
+    }
     void Update()
     {
         _dangerTimer += Time.deltaTime;
@@ -69,7 +82,20 @@ public class EnemySpawner : MonoBehaviour
 
     private Vector3 GetRandomSpawnPoint()
     {
-        if (_spawnPoints == null || _spawnPoints.Length == 0) return transform.position;
-        return _spawnPoints[Random.Range(0, _spawnPoints.Length)].position;
+        for (int i = 0; i < 10; i++)
+        {
+            Vector2 randomDir = Random.insideUnitCircle.normalized;
+            float randomDist = Random.Range(_minSpawnRadius, _maxSpawnRadius);
+            Vector3 randomPoint = _characterTransform.position + (Vector3)(randomDir * randomDist);
+
+            if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 3f, NavMesh.AllAreas))
+            {
+                if (Vector3.Distance(_characterTransform.position, hit.position) >= _minSpawnRadius)
+                {
+                    return hit.position;
+                }
+            }
+        }
+        return transform.position;
     }
 }
