@@ -9,7 +9,6 @@ using Random = UnityEngine.Random;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<EnemySpawnData> _allEnemies;
-    [SerializeField] private Transform[] _spawnPoints;
 
     [SerializeField] private float _spawnInterval = 10f;
     [SerializeField] int _budgetGenerationRate = 10;
@@ -24,10 +23,13 @@ public class EnemySpawner : MonoBehaviour
     private int _currentDangerLevel = 1;
     private float _spawnBudget;
 
+    private DiContainer _container;
+
     [Inject]
-    private void Construct(Character character)
+    private void Construct(Character character, DiContainer container)
     {
         _characterTransform = character.transform;
+        _container = container;
     }
     void Update()
     {
@@ -68,7 +70,9 @@ public class EnemySpawner : MonoBehaviour
 
         var enemyToSpawn = availableEnemies[Random.Range(0, availableEnemies.Count)];
 
-        Instantiate(enemyToSpawn.Prefab, GetRandomSpawnPoint(), Quaternion.identity);
+        var obj= Instantiate(enemyToSpawn.Prefab, GetRandomSpawnPoint(), Quaternion.identity);
+
+        _container.InjectGameObject(obj);
 
         _spawnBudget -= enemyToSpawn.Cost;
         return true;
