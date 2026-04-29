@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using Zenject;
-using UnityEngine.InputSystem;
 
 public class InputReader : IInitializable, ITickable, IInput
 {
+    public event Action<int> OnSlotPressed;
+
     public Vector2 Move { get; private set; }
 
     public bool Attack { get; private set; }
@@ -16,6 +16,9 @@ public class InputReader : IInitializable, ITickable, IInput
         _input = new PlayerInputActions();
         _input.Enable();
 
+        _input.Character.Hotbar1.performed += _ => OnSlotPressed?.Invoke(0);
+        _input.Character.Hotbar2.performed += _ => OnSlotPressed?.Invoke(1);
+        _input.Character.Hotbar3.performed += _ => OnSlotPressed?.Invoke(2);
     }
     public void Tick()
     {

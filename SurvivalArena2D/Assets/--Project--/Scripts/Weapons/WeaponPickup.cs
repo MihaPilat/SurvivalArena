@@ -6,12 +6,12 @@ public class WeaponPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        IWeaponController weaponController =collision.GetComponentInChildren<IWeaponController>();
+        WeaponController weaponController =collision.GetComponentInChildren<WeaponController>();
         
         if (weaponController!=null)
         {
             Debug.Log($"Picked up: {_weaponPrefab.name}");
-            weaponController.AddWeapon(_weaponPrefab);
+            weaponController.TryAddWeapon(_weaponPrefab);
             Destroy(gameObject);
         }
     }

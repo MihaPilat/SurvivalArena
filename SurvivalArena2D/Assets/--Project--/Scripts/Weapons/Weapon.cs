@@ -11,6 +11,8 @@ public abstract class Weapon : MonoBehaviour, IWeapon
     public WeaponConfig Config => _config;
     public int Damage => _config.Damage;
 
+    public Sprite Icon => _config.Icon;
+
     protected float _lastAttackTime;
 
     public void Attack(Vector2 origin, IMouseInput mouseInput)

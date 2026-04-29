@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a90f81b656b5a544081ec84de78764f9, type: 3}
   m_Name: SwordConfig
   m_EditorClassIdentifier: 
+  Icon: {fileID: -9133253889385947938, guid: 8889158ec959514479a7036c66a835a6, type: 3}
   Type: 0
   Damage: 5
   AttackCooldown: 0.35

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -16,16 +13,6 @@ public class CharacterInstaller : MonoInstaller
     {
         BindConfig();
         BindInstance();
-        BindWeaponController();
-    }
-
-    private void BindWeaponController()
-    {
-        var weaponController = _character.GetComponentInChildren<WeaponController>();
-
-        Container.Bind<IWeaponController>()
-            .FromInstance(weaponController)
-            .AsSingle();
     }
 
     private void BindInstance()

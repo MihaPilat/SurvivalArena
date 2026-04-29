@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Game/Weapon Config")]
 public class WeaponConfig : ScriptableObject
 {
+    public Sprite Icon;
     public WeaponType Type;
     public int Damage;
 

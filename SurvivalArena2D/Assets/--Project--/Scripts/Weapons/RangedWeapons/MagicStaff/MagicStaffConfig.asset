@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a90f81b656b5a544081ec84de78764f9, type: 3}
+  m_Name: MagicStaffConfig
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 21300000, guid: e1eaedc95badede469fadbc74dca6303, type: 3}
+  Type: 2
+  Damage: 10
+  AttackCooldown: 0.5
+  ProjectilePrefab: {fileID: 1170835258638870793, guid: 7c1ef96b0bde70f429e258080dcf6a84, type: 3}
+  Spread: 2
+  ProjectileSpeed: 12
+  ProjectileLifetime: 3
+  RotateToTarget: 0
+  MagicRadius: 1.5
