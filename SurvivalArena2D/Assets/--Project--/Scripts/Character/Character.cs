@@ -11,6 +11,9 @@ public class Character : MonoBehaviour, IEnemyTarget
     private int _maxHealth;
     private int _health;
 
+    private float _lastDamageTime;
+    private float _damageCooldown;
+
     private IWeapon _currentWeapon;
 
     private IMouseInput _mouseInput;
@@ -29,6 +32,7 @@ public class Character : MonoBehaviour, IEnemyTarget
     {
         _health = _maxHealth = characterStatsConfig.MaxHealth;
         Speed = characterStatsConfig.Speed;
+        _damageCooldown = characterStatsConfig.DamageCooldown;
         _mouseInput = mouseInput;
         cameraService.SetTarget(transform);
 
@@ -56,8 +60,11 @@ public class Character : MonoBehaviour, IEnemyTarget
     }
     public void TakeDamage(int damage)
     {
-        if (IsDie || damage <= 0)
+        if (IsDie || damage <= 0 || Time.time < _lastDamageTime + _damageCooldown)
             return;
+
+        _lastDamageTime = Time.time;
+
         _health -= damage;
         _health = Mathf.Clamp(_health, 0, _maxHealth);
 
