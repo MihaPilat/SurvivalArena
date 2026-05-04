@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: -9133253889385947938, guid: 8889158ec959514479a7036c66a835a6, type: 3}
   Type: 0
-  Damage: 5
+  Damage: 15
   AttackCooldown: 0.35
   ProjectilePrefab: {fileID: 0}
   Spread: 2

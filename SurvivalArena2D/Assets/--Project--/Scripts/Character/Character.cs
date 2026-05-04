@@ -18,6 +18,8 @@ public class Character : MonoBehaviour, IEnemyTarget
 
     private IMouseInput _mouseInput;
 
+    private ILevelable _levelSystem;
+
     public Vector2 MoveDirection { get; private set; }
     public Vector2 AimDirection { get; private set; }
 
@@ -28,14 +30,15 @@ public class Character : MonoBehaviour, IEnemyTarget
     public bool IsDie => _health <= 0;
 
     [Inject]
-    private void Construct(CharacterStatsConfig characterStatsConfig, IMouseInput mouseInput, CameraService cameraService)
+    private void Construct(CharacterStatsConfig characterStatsConfig, IMouseInput mouseInput, CameraService cameraService,
+        ILevelable levelSystem)
     {
         _health = _maxHealth = characterStatsConfig.MaxHealth;
         Speed = characterStatsConfig.Speed;
         _damageCooldown = characterStatsConfig.DamageCooldown;
         _mouseInput = mouseInput;
         cameraService.SetTarget(transform);
-
+        _levelSystem = levelSystem;
     }
 
     private void Update()
@@ -58,6 +61,7 @@ public class Character : MonoBehaviour, IEnemyTarget
             return;
         _currentWeapon?.Attack(transform.position, _mouseInput);
     }
+
     public void TakeDamage(int damage)
     {
         if (IsDie || damage <= 0 || Time.time < _lastDamageTime + _damageCooldown)
@@ -76,17 +80,21 @@ public class Character : MonoBehaviour, IEnemyTarget
             Die();
         }
     }
+
     public void SetMoveDirection(Vector2 direction)
     {
         MoveDirection = direction;
     }
+
     private void UpdateAimDirection()
     {
         Vector2 dir = _mouseInput.MouseWorldPosition - (Vector2)transform.position;
         AimDirection = dir.normalized;
     }
-    private void Die()
-    {
-        OnDied?.Invoke();
-    }
+
+    public void AddExperience(int amount) => _levelSystem.AddExperience(amount);
+
+    public ILevelable LevelProgress => _levelSystem;
+
+    private void Die() => OnDied?.Invoke();
 }
