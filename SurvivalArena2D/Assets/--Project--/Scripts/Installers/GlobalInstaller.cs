@@ -10,6 +10,12 @@ public class GlobalInstaller : MonoInstaller
     public override void InstallBindings()
     {
         BindInput();
+        BindPauseManager();
+    }
+
+    private void BindPauseManager()
+    {
+        Container.BindInterfacesAndSelfTo<PauseManager>().AsSingle();
     }
 
     private void BindInput()
