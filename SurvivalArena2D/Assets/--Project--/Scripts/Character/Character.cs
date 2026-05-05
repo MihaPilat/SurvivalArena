@@ -97,7 +97,7 @@ public class Character : MonoBehaviour, IEnemyTarget
 
     public void AddHealth(int amount)
     {
-        if (amount <= 0)
+        if (amount <= 0 || IsDie)
             return;
 
         _health = Mathf.Min(_health + amount, _maxHealth);

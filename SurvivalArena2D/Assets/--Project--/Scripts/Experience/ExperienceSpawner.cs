@@ -26,6 +26,6 @@ public class ExperienceSpawner : MonoBehaviour
     private void SpawnExperience()
     {
         var orb = Instantiate(_orbPrefab, transform.position, Quaternion.identity);
-        orb.Init(_enemy.Config.Damage);
+        orb.Init(_enemy.Config.ExpAmount);
     }
 }

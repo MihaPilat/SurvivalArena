@@ -16,9 +16,13 @@ MonoBehaviour:
   Speed: 2
   StopDistance: 0.8
   WaitingTime: 1
-  AttackRange: 10
+  ContactDamage: 5
+  ExpAmount: 50
+  MinAttackRange: 5
+  MaxAttackRange: 8
   AttackCooldown: 5
-  ProjectilePrefab: {fileID: 0}
   Spread: 2
   ProjectileSpeed: 12
   ProjectileLifetime: 3
+  ProjectilePrefab: {fileID: 0}
+  Damage: 5
