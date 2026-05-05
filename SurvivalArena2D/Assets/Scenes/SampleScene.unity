@@ -61212,6 +61212,9 @@ MonoBehaviour:
   _icon: {fileID: 1678726559}
   _selectionFrame: {fileID: 1331782074}
   _keyText: {fileID: 1882593372}
+  _iconContainer: {fileID: 1678726558}
+  _selectPunchAmount: 0.2
+  _animationDuration: 0.3
 --- !u!1 &1075281644
 GameObject:
   m_ObjectHideFlags: 0
@@ -65899,6 +65902,9 @@ MonoBehaviour:
   _icon: {fileID: 1075281646}
   _selectionFrame: {fileID: 305717843}
   _keyText: {fileID: 675089273}
+  _iconContainer: {fileID: 1075281645}
+  _selectPunchAmount: 0.2
+  _animationDuration: 0.3
 --- !u!1 &1499242423
 GameObject:
   m_ObjectHideFlags: 0
@@ -66322,6 +66328,9 @@ MonoBehaviour:
   _icon: {fileID: 608796316}
   _selectionFrame: {fileID: 2059420720}
   _keyText: {fileID: 989095910}
+  _iconContainer: {fileID: 608796315}
+  _selectPunchAmount: 0.2
+  _animationDuration: 0.3
 --- !u!1 &1599827631
 GameObject:
   m_ObjectHideFlags: 0

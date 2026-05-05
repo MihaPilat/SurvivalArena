@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class HotbarSlotView : MonoBehaviour
 {
@@ -8,23 +9,82 @@ public class HotbarSlotView : MonoBehaviour
     [SerializeField] private Image _selectionFrame;
     [SerializeField] private TextMeshProUGUI _keyText;
 
+    [SerializeField] private RectTransform _iconContainer;
+    [SerializeField] private float _selectPunchAmount = 0.2f;
+    [SerializeField] private float _animationDuration = 0.3f;
+
+    private Tween _pulseTween;
+
     public void SetIcon(Sprite sprite)
     {
+        _icon.transform.DOKill(); // Сразу гасим старые анимации
+
         if (sprite == null)
         {
             _icon.enabled = false;
+            return;
         }
-        else
-        {
-            _icon.sprite = sprite;
-            _icon.enabled = true;
-        }
+
+        _icon.sprite = sprite;
+        _icon.enabled = true;
+        _icon.color = Color.white;
+
+        // Запускаем маленькую корутину
+        StartCoroutine(AnimateIconRoutine());
     }
 
     public void SetSelection(bool isSelected)
     {
-        _selectionFrame.enabled = isSelected;
+        _selectionFrame.transform.DOKill();
+        _iconContainer.DOKill();
+        _pulseTween?.Kill();
+
+        if (isSelected)
+        {
+            _selectionFrame.enabled = true;
+
+            _selectionFrame.transform.localScale = Vector3.one * 0.8f;
+            _selectionFrame.transform.DOScale(Vector3.one, _animationDuration)
+                .SetEase(Ease.OutBack)
+                .SetUpdate(true);
+
+            _pulseTween = _selectionFrame.DOFade(0.3f, 0.8f)
+                .SetLoops(-1, LoopType.Yoyo)
+                .SetEase(Ease.InOutSine)
+                .SetUpdate(true);
+
+            _iconContainer.DOPunchScale(Vector3.one * _selectPunchAmount, _animationDuration, 5, 1)
+                .SetUpdate(true);
+        }
+        else
+        {
+            _selectionFrame.DOFade(0, _animationDuration).SetUpdate(true).OnComplete(() =>
+            {
+                _selectionFrame.enabled = false;
+                _selectionFrame.color = Color.white;
+            });
+
+            _iconContainer.DOScale(Vector3.one, _animationDuration).SetUpdate(true);
+        }
     }
 
     public void SetKeyText(string text) => _keyText.text = text;
+
+    private System.Collections.IEnumerator AnimateIconRoutine()
+    {
+        // Сбрасываем в 0 и ждем конца кадра, чтобы Unity "осознала" включение Image
+        _icon.transform.localScale = Vector3.zero;
+        yield return new WaitForEndOfFrame();
+
+        // Теперь, когда UI обновился, запускаем анимацию
+        _icon.transform.DOScale(Vector3.one, _animationDuration)
+            .SetEase(Ease.OutBack)
+            .SetUpdate(true);
+    }
+
+    private void OnDestroy()
+    {
+        _pulseTween?.Kill();
+        _selectionFrame.transform.DOKill();
+    }
 }

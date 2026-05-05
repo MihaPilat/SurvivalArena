@@ -18,14 +18,18 @@ public class HotbarView : MonoBehaviour
         for (int i = 0; i < _slots.Length; i++)
         {
             _slots[i].SetKeyText((i + 1).ToString());
-            _slots[i].SetIcon(null);
-            _slots[i].SetSelection(false);
         }
     }
+    private void Start()
+    {
+        FullRedraw();
+    }
+
     private void OnEnable()
     {
         _inventoryService.OnSlotChanged += UpdateSlotIcon;
         _inventoryService.OnWeaponSelected += HighlightActiveSlot;
+
     }
 
     private void OnDisable()
@@ -33,7 +37,19 @@ public class HotbarView : MonoBehaviour
         _inventoryService.OnSlotChanged -= UpdateSlotIcon;
         _inventoryService.OnWeaponSelected -= HighlightActiveSlot;
     }
+    private void FullRedraw()
+    {
+        var weapons = _inventoryService.GetAllWeapons();
+        int activeIndex = _inventoryService.CurrentSlotIndex;
 
+        for (int i = 0; i < _slots.Length; i++)
+        {
+            IWeapon weapon = (i < weapons.Count) ? weapons[i] : null;
+
+            _slots[i].SetIcon(weapon?.Icon);
+            _slots[i].SetSelection(i == activeIndex);
+        }
+    }
     private void UpdateSlotIcon(int index, IWeapon weapon)
     {
         if (index >= 0 && index < _slots.Length)

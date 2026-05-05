@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Zenject;
 
 public class InventoryService : IInitializable, IDisposable
@@ -58,5 +59,9 @@ public class InventoryService : IInitializable, IDisposable
     public void Dispose()
     {
         _input.OnSlotPressed -= SelectSlot;
+    }
+    public IReadOnlyList<IWeapon> GetAllWeapons()
+    {
+        return _slots;
     }
 }
