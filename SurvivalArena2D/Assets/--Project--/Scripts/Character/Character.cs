@@ -86,6 +86,28 @@ public class Character : MonoBehaviour, IEnemyTarget
         MoveDirection = direction;
     }
 
+    public void AddMaxHealth(int amount)
+    {
+        if (amount <= 0)
+            return;
+
+        _maxHealth += amount;
+        OnHealthChanged?.Invoke(_health, _maxHealth);
+    }
+
+    public void AddHealth(int amount)
+    {
+        if (amount <= 0)
+            return;
+
+        _health = Mathf.Min(_health + amount, _maxHealth);
+        OnHealthChanged?.Invoke(_health, _maxHealth);
+    }
+    public void IncreaseMaxHealth(int amount)
+    {
+        AddMaxHealth(amount);
+        AddHealth(amount);
+    }
     private void UpdateAimDirection()
     {
         Vector2 dir = _mouseInput.MouseWorldPosition - (Vector2)transform.position;

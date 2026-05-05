@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Zenject;
 
 public class GlobalInstaller : MonoInstaller
@@ -9,8 +5,8 @@ public class GlobalInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        BindInput();
         BindPauseManager();
+        BindInput();
     }
 
     private void BindPauseManager()
