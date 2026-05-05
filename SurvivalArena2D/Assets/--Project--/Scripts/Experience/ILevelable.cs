@@ -7,4 +7,5 @@ public interface ILevelable
 
     int CurrentLevel { get; }
     void AddExperience(int amount);
+
 }

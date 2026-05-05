@@ -17,7 +17,7 @@ public class HotbarSlotView : MonoBehaviour
 
     public void SetIcon(Sprite sprite)
     {
-        _icon.transform.DOKill(); // Сразу гасим старые анимации
+        _icon.transform.DOKill();
 
         if (sprite == null)
         {
@@ -29,7 +29,6 @@ public class HotbarSlotView : MonoBehaviour
         _icon.enabled = true;
         _icon.color = Color.white;
 
-        // Запускаем маленькую корутину
         StartCoroutine(AnimateIconRoutine());
     }
 
@@ -72,11 +71,9 @@ public class HotbarSlotView : MonoBehaviour
 
     private System.Collections.IEnumerator AnimateIconRoutine()
     {
-        // Сбрасываем в 0 и ждем конца кадра, чтобы Unity "осознала" включение Image
         _icon.transform.localScale = Vector3.zero;
         yield return new WaitForEndOfFrame();
 
-        // Теперь, когда UI обновился, запускаем анимацию
         _icon.transform.DOScale(Vector3.one, _animationDuration)
             .SetEase(Ease.OutBack)
             .SetUpdate(true);

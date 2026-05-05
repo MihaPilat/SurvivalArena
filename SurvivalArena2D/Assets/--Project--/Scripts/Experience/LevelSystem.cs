@@ -12,28 +12,51 @@ public class LevelSystem : ILevelable
     private int _expToNextLevel = 100;
     private float _levelMultiplier = 1.2f;
 
+    private int _storedExperience;
+    private bool _isWaitingForUpgrade;
+
     public void AddExperience(int amount)
     {
         if (amount <= 0) return;
 
-        _currentExp += amount;
+        _storedExperience += amount;
 
-        while (_currentExp >= _expToNextLevel)
+        TryProcessExperience();
+    }
+    private void TryProcessExperience()
+    {
+        if (_isWaitingForUpgrade) return;
+
+        _currentExp += _storedExperience;
+        _storedExperience = 0;
+
+        if (_currentExp >= _expToNextLevel)
         {
-            LevelUp();
+            int extra = _currentExp - _expToNextLevel;
+            _currentExp = _expToNextLevel;
+            _storedExperience = extra;
+
+            TriggerLevelUp();
         }
 
         OnExpChanged?.Invoke(_currentExp, _expToNextLevel);
     }
 
-    private void LevelUp()
+    private void TriggerLevelUp()
     {
-        _currentExp -= _expToNextLevel;
-        CurrentLevel++;
+        _isWaitingForUpgrade = true;
+        OnLevelUp?.Invoke(CurrentLevel + 1);
+    }
+    public void ConfirmUpgrade()
+    {
+        _isWaitingForUpgrade = false;
 
+        CurrentLevel++;
+        _currentExp = 0;
         _expToNextLevel = Mathf.RoundToInt(_expToNextLevel * _levelMultiplier);
 
-        OnLevelUp?.Invoke(CurrentLevel);
-        Debug.Log($"New Level: {CurrentLevel}");
+        Debug.Log($"Level confirmed: {CurrentLevel}. Proceeding with extra exp: {_storedExperience}");
+
+        TryProcessExperience();
     }
 }

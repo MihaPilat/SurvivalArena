@@ -13,7 +13,6 @@ public class LevelUpScreen : MonoBehaviour
     [SerializeField] private UpgradeCard[] _cards;
 
     private float _outOfScreenY = -1200f;
-
     private ILevelable _levelSystem;
     private PauseManager _pauseManager;
     private List<UpgradeData> _allUpgrades;
@@ -113,6 +112,7 @@ public class LevelUpScreen : MonoBehaviour
     private void SelectUpgrade(UpgradeData upgrade)
     {
         upgrade.Apply(_character);
+        ((LevelSystem)_levelSystem).ConfirmUpgrade();
         Hide();
     }
 }
