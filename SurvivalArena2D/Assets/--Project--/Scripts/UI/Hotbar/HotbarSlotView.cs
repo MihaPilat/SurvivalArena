@@ -35,12 +35,16 @@ public class HotbarSlotView : MonoBehaviour
     public void SetSelection(bool isSelected)
     {
         _selectionFrame.transform.DOKill();
+        _selectionFrame.DOKill();
         _iconContainer.DOKill();
         _pulseTween?.Kill();
 
         if (isSelected)
         {
             _selectionFrame.enabled = true;
+            var color = _selectionFrame.color;
+            color.a = 1f;
+            _selectionFrame.color = color;
 
             _selectionFrame.transform.localScale = Vector3.one * 0.8f;
             _selectionFrame.transform.DOScale(Vector3.one, _animationDuration)
@@ -57,10 +61,12 @@ public class HotbarSlotView : MonoBehaviour
         }
         else
         {
-            _selectionFrame.DOFade(0, _animationDuration).SetUpdate(true).OnComplete(() =>
+            _selectionFrame.DOFade(0, _animationDuration)
+            .SetUpdate(true)
+            .OnComplete(() =>
             {
-                _selectionFrame.enabled = false;
-                _selectionFrame.color = Color.white;
+                if (_selectionFrame.color.a < 0.1f)
+                    _selectionFrame.enabled = false;
             });
 
             _iconContainer.DOScale(Vector3.one, _animationDuration).SetUpdate(true);
