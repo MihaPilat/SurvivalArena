@@ -13,6 +13,8 @@ public class LevelUpScreen : MonoBehaviour
     [SerializeField] private UpgradeCard[] _cards;
 
     private float _outOfScreenY = -1200f;
+    private bool _isClosing;
+
     private ILevelable _levelSystem;
     private PauseManager _pauseManager;
     private List<UpgradeData> _allUpgrades;
@@ -39,11 +41,15 @@ public class LevelUpScreen : MonoBehaviour
 
     private void HandleLevelUp(int newLevel)
     {
+        if (_panel.activeSelf) return;
+
         DOVirtual.DelayedCall(0.5f, Show).SetUpdate(true);
     }
 
     public void Show()
     {
+        _isClosing = false;
+        _canvasGroup.interactable = true;
         _panel.SetActive(true);
         _pauseManager.SetPaused(true);
 
@@ -63,12 +69,16 @@ public class LevelUpScreen : MonoBehaviour
 
     private void Hide()
     {
+        _isClosing = true;
+        _canvasGroup.interactable = false;
+
         _panelRect.DOAnchorPos(new Vector2(0, _outOfScreenY), 0.4f)
             .SetEase(Ease.InBack)
             .SetUpdate(true)
             .OnComplete(() => {
                 _panelRect.gameObject.SetActive(false);
                 _pauseManager.SetPaused(false);
+                _isClosing = false;
             });
 
         _canvasGroup.DOFade(0, 0.3f).SetUpdate(true);
@@ -78,13 +88,19 @@ public class LevelUpScreen : MonoBehaviour
     {
         for (int i = 0; i < _cards.Length; i++)
         {
+            if (!_cards[i].gameObject.activeSelf) continue;
+
             Transform cardTransform = _cards[i].transform;
-
+            cardTransform.DOKill();
             cardTransform.localScale = Vector3.zero;
+            cardTransform.localRotation = Quaternion.Euler(0, 0, 15f);
 
-            cardTransform.localRotation = Quaternion.Euler(0, 0, 15f); // Изначально наклонена
+            cardTransform.DOScale(Vector3.one, 0.5f)
+                .SetEase(Ease.OutBack)
+                .SetUpdate(true);
+
             cardTransform.DORotate(Vector3.zero, 0.6f)
-                .SetEase(Ease.OutBack, 4.0f) // Сильно пружиним вращение к нулю
+                .SetEase(Ease.OutBack, 4.0f)
                 .SetUpdate(true);
         }
     }
@@ -111,8 +127,29 @@ public class LevelUpScreen : MonoBehaviour
     }
     private void SelectUpgrade(UpgradeData upgrade)
     {
+        if (_isClosing) return;
+        _isClosing = true;
+        _canvasGroup.interactable = false;
+
         upgrade.Apply(_character);
         ((LevelSystem)_levelSystem).ConfirmUpgrade();
-        Hide();
+
+        UpgradeCard selectedCard = _cards.FirstOrDefault(c => c.CurrentUpgrade == upgrade);
+
+        if (selectedCard != null)
+        {
+            Sequence sequence = DOTween.Sequence().SetUpdate(true);
+            sequence.Append(selectedCard.transform.DOScale(1.1f, 0.1f).SetEase(Ease.OutQuad));
+            sequence.Append(selectedCard.transform.DOScale(0f, 0.2f).SetEase(Ease.InBack));
+
+            sequence.OnComplete(() =>
+            {
+                Hide();
+            });
+        }
+        else
+        {
+            Hide();
+        }
     }
 }

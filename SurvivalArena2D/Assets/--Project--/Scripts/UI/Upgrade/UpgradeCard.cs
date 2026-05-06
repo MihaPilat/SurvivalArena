@@ -16,6 +16,8 @@ public class UpgradeCard : MonoBehaviour
     private UpgradeData _data;
     private Action<UpgradeData> _onSelected;
 
+    public UpgradeData CurrentUpgrade => _data;
+
     public void Setup(UpgradeData data, Action<UpgradeData> onSelected)
     {
         _data = data;
