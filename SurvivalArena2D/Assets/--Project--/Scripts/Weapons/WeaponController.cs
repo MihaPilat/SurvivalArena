@@ -89,7 +89,7 @@ public class WeaponController : MonoBehaviour
     }
     private void HandleWeaponSelected(IWeapon targetWeapon)
     {
-        if (targetWeapon == null) return;
+        if (targetWeapon == null || _character.IsDie) return;
 
         if (_currentWeapon != null)
             ((MonoBehaviour)_currentWeapon).gameObject.SetActive(false);
