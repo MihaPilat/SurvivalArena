@@ -8,11 +8,16 @@ public class Character : MonoBehaviour, IEnemyTarget
     public event Action OnDied;
     public event Action OnDamaged;
 
+    [SerializeField] private ExperienceCollector _collector;
+
     private int _maxHealth;
     private int _health;
 
     private float _lastDamageTime;
     private float _damageCooldown;
+
+    private float _currentPickupRadius;
+    private float _radiusUpgradeStep;
 
     private IWeapon _currentWeapon;
 
@@ -39,6 +44,11 @@ public class Character : MonoBehaviour, IEnemyTarget
         _mouseInput = mouseInput;
         cameraService.SetTarget(transform);
         _levelSystem = levelSystem;
+
+        _currentPickupRadius = characterStatsConfig.BasePickupRadius;
+        _radiusUpgradeStep = characterStatsConfig.RadiusUpgradeStep;
+
+        _collector.UpdateRadius(_currentPickupRadius);
     }
 
     private void Update()
@@ -108,6 +118,13 @@ public class Character : MonoBehaviour, IEnemyTarget
         AddMaxHealth(amount);
         AddHealth(amount);
     }
+
+    public void IncreasePickupRadius()
+    {
+        _currentPickupRadius += _radiusUpgradeStep;
+        _collector.UpdateRadius(_currentPickupRadius);
+    }
+
     private void UpdateAimDirection()
     {
         Vector2 dir = _mouseInput.MouseWorldPosition - (Vector2)transform.position;
