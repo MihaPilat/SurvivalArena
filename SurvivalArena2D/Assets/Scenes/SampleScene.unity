@@ -65694,7 +65694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _panel: {fileID: 150032218}
-  _panelRect: {fileID: 150032219}
+  _panelRect: {fileID: 1383214428}
   _canvasGroup: {fileID: 150032220}
   _cards:
   - {fileID: 1851967287}

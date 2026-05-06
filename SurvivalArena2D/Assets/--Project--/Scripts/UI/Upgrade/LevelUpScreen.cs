@@ -76,7 +76,8 @@ public class LevelUpScreen : MonoBehaviour
             .SetEase(Ease.InBack)
             .SetUpdate(true)
             .OnComplete(() => {
-                _panelRect.gameObject.SetActive(false);
+            _panel.SetActive(false);
+
                 _pauseManager.SetPaused(false);
                 _isClosing = false;
             });
