@@ -7,7 +7,7 @@ public class UpgradePickup : MonoBehaviour
     [SerializeField] private float _maxIconSize = 0.9f;
 
     private UpgradeData _data;
-
+    private bool _isPickedUp;
     public void Setup(UpgradeData newData)
     {
         _data = newData;
@@ -26,8 +26,10 @@ public class UpgradePickup : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (_isPickedUp) return;
         if (collision.TryGetComponent(out Character character))
         {
+            _isPickedUp = true;
             _data.Apply(character);
             Destroy(gameObject);
         }
