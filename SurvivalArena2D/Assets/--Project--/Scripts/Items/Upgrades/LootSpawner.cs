@@ -7,12 +7,15 @@ using Random = UnityEngine.Random;
 public class LootSpawner: IInitializable, IDisposable
 {
     private readonly LootConfig _config;
+
     private readonly List<UpgradeData> _allUpgrades;
     private readonly List<Transform> _spawnPoints;
     private readonly List<Transform> _specialSpawnPoints;
 
     private readonly IInstantiator _instantiator;
     private readonly IWaveHandler _waveHandler;
+
+    private readonly IndicatorManager _indicatorManager;
 
     private GameObject _currentActivePickup;
 
@@ -21,6 +24,7 @@ public class LootSpawner: IInitializable, IDisposable
         IWaveHandler waveHandler,
         List<UpgradeData> upgrades,
         LootConfig config,
+        IndicatorManager indicatorManager,
         [Inject(Id = "DefaultPoints")] List<Transform> spawnPoints,
         [Inject(Id = "SpecialPoints")] List<Transform> specialPoints)
     {
@@ -30,6 +34,7 @@ public class LootSpawner: IInitializable, IDisposable
         _config = config;
         _spawnPoints = spawnPoints;
         _specialSpawnPoints = specialPoints;
+        _indicatorManager = indicatorManager;
     }
 
     public void Initialize()
@@ -72,8 +77,12 @@ public class LootSpawner: IInitializable, IDisposable
             return;
         }
 
-        var point = _specialSpawnPoints[UnityEngine.Random.Range(0, _specialSpawnPoints.Count)];
-        _instantiator.InstantiatePrefab(ev.PrefabToSpawn, point.position, Quaternion.identity, null);
+        var point = _specialSpawnPoints[Random.Range(0, _specialSpawnPoints.Count)];
+
+        var obj= _instantiator.InstantiatePrefab(ev.PrefabToSpawn, point.position, Quaternion.identity, null);
+
+        if (obj.TryGetComponent(out SpriteRenderer sr))
+            _indicatorManager.CreateIndicator(obj.transform, sr.sprite);
     }
     private void SpawnRandomUpgrade()
     {
@@ -87,6 +96,7 @@ public class LootSpawner: IInitializable, IDisposable
         if (_currentActivePickup.TryGetComponent(out UpgradePickup pickup))
         {
             pickup.Setup(data);
+            _indicatorManager.CreateIndicator(_currentActivePickup.transform, data.Icon);
         }
     }
 }

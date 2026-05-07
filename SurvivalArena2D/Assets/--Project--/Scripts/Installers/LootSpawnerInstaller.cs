@@ -5,13 +5,22 @@ using Zenject;
 
 public class LootSpawnerInstaller : MonoInstaller
 {
+    [SerializeField] private IndicatorManager _indicatorManager;
+
     [SerializeField] private List<Transform> _defaultPoints;
     [SerializeField] private List<Transform> _specialPoints;
+
     public override void InstallBindings()
     {
+        BindIndicatorManager();
         BindLootConfig();
         BindPointsWithId();
         BindLootSpawner();
+    }
+
+    private void BindIndicatorManager()
+    {
+        Container.BindInstance(_indicatorManager).AsSingle();
     }
 
     private void BindPointsWithId()
