@@ -18,7 +18,7 @@ public class GameInstaller : MonoInstaller
 
         Container.Bind<List<UpgradeData>>()
                  .FromInstance(upgrades.ToList())
-                 .AsSingle()
+                 .AsCached()
                  .NonLazy();
     }
 

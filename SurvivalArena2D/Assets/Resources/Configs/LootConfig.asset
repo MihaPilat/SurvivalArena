@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04f324941c7e644790414005bc70a38, type: 3}
+  m_Name: LootConfig
+  m_EditorClassIdentifier: 
+  SpecialEvents:
+  - TargetWave: 2
+    PrefabToSpawn: {fileID: 7297383671919931362, guid: 074dbe9779d722b4fb308c7c93a48488, type: 3}
+  - TargetWave: 10
+    PrefabToSpawn: {fileID: 4882390879427794155, guid: acb2e5476401f5c49852f4c2f6afb8c6, type: 3}
+  DefaultPickupPrefab: {fileID: 7886973500918249360, guid: cc10b6e6bb3fe3648a1ea868c7e32302, type: 3}
