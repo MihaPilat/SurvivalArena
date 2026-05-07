@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class UpgradePickup : MonoBehaviour
@@ -31,7 +32,25 @@ public class UpgradePickup : MonoBehaviour
         {
             _isPickedUp = true;
             _data.Apply(character);
-            Destroy(gameObject);
+            PlayCollectAnimation();
         }
     }
+
+    private void PlayCollectAnimation()
+    {
+        Sequence seq = DOTween.Sequence();
+
+        seq.Append(transform.DOScale(transform.localScale * 1.5f, 0.2f).SetEase(Ease.OutQuad));
+
+        if (_iconRenderer != null)
+        {
+            seq.Join(_iconRenderer.DOFade(0, 0.2f));
+        }
+
+        seq.OnComplete(() =>
+        {
+            Destroy(gameObject);
+        });
+    }
+
 }
