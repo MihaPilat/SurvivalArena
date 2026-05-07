@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,8 +6,10 @@ using UnityEngine.AI;
 using Zenject;
 using Random = UnityEngine.Random;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour, IWaveHandler
 {
+    public event Action<int> OnWaveStarted;
+
     [SerializeField] private List<EnemySpawnData> _allEnemies;
 
     [SerializeField] private float _spawnInterval = 10f;
@@ -22,14 +24,16 @@ public class EnemySpawner : MonoBehaviour
     private float _spawnTimer;
     private int _currentDangerLevel = 1;
     private float _spawnBudget;
+    private int _currentWave = 0;
 
-    private DiContainer _container;
+
+    private IInstantiator _instantiator;
 
     [Inject]
-    private void Construct(Character character, DiContainer container)
+    private void Construct(Character character, IInstantiator instantiator)
     {
         _characterTransform = character.transform;
-        _container = container;
+        _instantiator = instantiator;
     }
     void Update()
     {
@@ -46,6 +50,8 @@ public class EnemySpawner : MonoBehaviour
         if (_spawnTimer >= _spawnInterval)
         {
             _spawnTimer = 0;
+            _currentWave++;
+            OnWaveStarted?.Invoke(_currentWave);
             SpawnBatch();
         }
     }
@@ -70,19 +76,13 @@ public class EnemySpawner : MonoBehaviour
 
         var enemyToSpawn = availableEnemies[Random.Range(0, availableEnemies.Count)];
 
-        var obj= Instantiate(enemyToSpawn.Prefab, GetRandomSpawnPoint(), Quaternion.identity);
-
-        _container.InjectGameObject(obj);
+        _instantiator.InstantiatePrefab(enemyToSpawn.Prefab, GetRandomSpawnPoint(), Quaternion.identity, null);
 
         _spawnBudget -= enemyToSpawn.Cost;
         return true;
     }
 
-    private int GetCheapestEnemyCost()
-    {
-        if (_allEnemies == null || _allEnemies.Count == 0) return 0;
-        return _allEnemies.Min(e => e.Cost);
-    }
+    private int GetCheapestEnemyCost() => _allEnemies?.Min(e => e.Cost) ?? 0;
 
     private Vector3 GetRandomSpawnPoint()
     {

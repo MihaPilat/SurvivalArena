@@ -13,7 +13,7 @@ public class UpgradeSpawnerInstaller : MonoInstaller
 
     private void BindUpgradeSpawner()
     {
-        Container.Bind<UpgradeSpawner>()
+        Container.BindInterfacesAndSelfTo<UpgradeSpawner>()
             .AsSingle()
             .OnInstantiated<UpgradeSpawner>((ctx, spawner) =>
             {
