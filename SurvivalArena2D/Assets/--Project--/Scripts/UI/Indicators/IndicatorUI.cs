@@ -24,6 +24,14 @@ public class IndicatorUI : MonoBehaviour
         _target = target;
         _iconImage.sprite = icon;
         _rectTransform = GetComponent<RectTransform>();
+
+        ToggleVisuals(false);
+
+        if (_target != null && _mainCam != null)
+        {
+            Vector3 screenPos = _mainCam.WorldToScreenPoint(_target.position);
+            UpdatePosition(screenPos);
+        }
     }
 
     private void Update()
