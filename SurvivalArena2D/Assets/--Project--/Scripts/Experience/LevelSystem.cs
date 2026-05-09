@@ -12,62 +12,60 @@ public class LevelSystem : ILevelable
     private int _expToNextLevel = 100;
     private float _levelMultiplier = 1.2f;
 
-    private int _storedExperience;
+    private int _pendingLevels;
     private bool _isWaitingForUpgrade;
 
     public void AddExperience(int amount)
     {
         if (amount <= 0) return;
 
-        _storedExperience += amount;
-        Debug.Log($"Exp added: {amount}. Total stored: {_storedExperience}");
+        _currentExp += amount;
+        Debug.Log($"Exp added: {amount}. Current total: {_currentExp}");
 
-        TryProcessExperience();
-    }
-
-    private void TryProcessExperience()
-    {
-        if (_isWaitingForUpgrade) return;
-
-        if (_storedExperience > 0)
-        {
-            _currentExp += _storedExperience;
-            _storedExperience = 0;
-        }
-
-        if (_currentExp >= _expToNextLevel)
-        {
-            int extra = _currentExp - _expToNextLevel;
-            _currentExp = _expToNextLevel;
-            _storedExperience += extra;
-
-            TriggerLevelUp();
-        }
-
-        OnExpChanged?.Invoke(_currentExp, _expToNextLevel);
-    }
-
-    private void TriggerLevelUp()
-    {
-        if (_isWaitingForUpgrade) return;
-
-        _isWaitingForUpgrade = true;
-
-        OnLevelUp?.Invoke(CurrentLevel + 1);
+        CheckLevelUp();
     }
 
     public void ConfirmUpgrade()
     {
         CurrentLevel++;
-
-        _currentExp = 0;
-
-        _expToNextLevel = Mathf.RoundToInt(_expToNextLevel * _levelMultiplier);
-
+        _pendingLevels--;
         _isWaitingForUpgrade = false;
 
-        Debug.Log($"Level Confirmed! New Level: {CurrentLevel}. Next goal: {_expToNextLevel}");
+        Debug.Log($"Level Confirmed! New Level: {CurrentLevel}. Pending: {_pendingLevels}");
 
-        TryProcessExperience();
+        if (_pendingLevels > 0)
+        {
+            ShowUpgradeWindow();
+        }
+        else
+        {
+            CheckLevelUp();
+        }
     }
+
+    private void CheckLevelUp()
+    {
+        while (_currentExp >= _expToNextLevel)
+        {
+            _currentExp -= _expToNextLevel;
+            _pendingLevels++;
+
+            _expToNextLevel = Mathf.RoundToInt(_expToNextLevel * _levelMultiplier);
+        }
+
+        OnExpChanged?.Invoke(_currentExp, _expToNextLevel);
+
+        if (_pendingLevels > 0 && !_isWaitingForUpgrade)
+        {
+            ShowUpgradeWindow();
+        }
+    }
+
+    private void ShowUpgradeWindow()
+    {
+        _isWaitingForUpgrade = true;
+        OnLevelUp?.Invoke(CurrentLevel + 1);
+    }
+
+    
 }
