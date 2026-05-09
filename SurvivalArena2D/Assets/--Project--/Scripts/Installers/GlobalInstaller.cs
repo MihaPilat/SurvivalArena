@@ -1,3 +1,4 @@
+using System;
 using Zenject;
 
 public class GlobalInstaller : MonoInstaller
@@ -7,11 +8,17 @@ public class GlobalInstaller : MonoInstaller
     {
         BindPauseManager();
         BindInput();
+        BindRecordService();
+    }
+
+    private void BindRecordService()
+    {
+        Container.Bind<RecordsService>().AsSingle().NonLazy();
     }
 
     private void BindPauseManager()
     {
-        Container.BindInterfacesAndSelfTo<PauseManager>().AsSingle();
+        Container.BindInterfacesAndSelfTo<PauseManager>().AsSingle().NonLazy();
     }
 
     private void BindInput()

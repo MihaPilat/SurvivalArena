@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,6 +11,12 @@ public class GameInstaller : MonoInstaller
         BindProjectileFactory();
         BindLevelSystem();
         BindUpgrades();
+        BindTimerService();
+    }
+
+    private void BindTimerService()
+    {
+        Container.BindInterfacesAndSelfTo<TimerService>().AsSingle().NonLazy();
     }
 
     private void BindUpgrades()
