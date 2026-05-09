@@ -2882,6 +2882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 1955614302}
   _panel: {fileID: 1955614300}
+  _windowRect: {fileID: 388709032}
   _currentTimeText: {fileID: 1212478183}
   _newRecordLabel: {fileID: 658747728}
   _restartButton: {fileID: 1922285428}

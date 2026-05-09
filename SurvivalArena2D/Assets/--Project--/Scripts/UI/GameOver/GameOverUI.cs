@@ -10,6 +10,7 @@ public class GameOverUI : MonoBehaviour
 {
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private GameObject _panel;
+    [SerializeField] private RectTransform _windowRect;
     [SerializeField] private TextMeshProUGUI _currentTimeText;
     [SerializeField] private GameObject _newRecordLabel;
     [SerializeField] private Button _restartButton;
@@ -32,19 +33,24 @@ public class GameOverUI : MonoBehaviour
     private void Start()
     {
         _panel.gameObject.SetActive(false);
-        _canvasGroup.alpha = 0;
         _canvasGroup.interactable = false;
-        _canvasGroup.blocksRaycasts = false;
         _newRecordLabel.SetActive(false);
 
-        _restartButton.onClick.AddListener(RestartGame);
-        _backToMenuButton.onClick.AddListener(BackToMenu);
+        _restartButton.onClick.AddListener(() => OnButtonClicked(_restartButton, RestartGame));
+        _backToMenuButton.onClick.AddListener(() => OnButtonClicked(_backToMenuButton, BackToMenu));
+
         _character.OnDied += ShowGameOver;
     }
 
-    private void BackToMenu()
+    private void OnButtonClicked(Button button, Action action)
     {
-        Debug.Log("Back to menu");
+        button.interactable = false;
+
+        button.transform.DOPunchScale(new Vector3(-0.1f, -0.1f, 0), 0.2f)
+            .SetUpdate(true)
+            .OnComplete(() => {
+                action?.Invoke();
+            });
     }
 
     private void ShowGameOver()
@@ -59,18 +65,34 @@ public class GameOverUI : MonoBehaviour
         {
             _recordsService.TrySaveRecord(finalTime);
             _newRecordLabel.SetActive(true);
-            _newRecordLabel.transform.DOPunchScale(Vector3.one * 0.2f, 0.5f);
+            _newRecordLabel.transform.DOPunchScale(Vector3.one * 0.2f, 0.5f).SetUpdate(true);
         }
 
         _currentTimeText.text = $"Продержался: {_timerService.GetFormattedTime()}";
 
         _panel.gameObject.SetActive(true);
 
-        _canvasGroup.DOFade(1f, 0.5f).SetUpdate(true);
         _canvasGroup.interactable = true;
-        _canvasGroup.blocksRaycasts = true;
 
         _pauseManager.SetPaused(true);
+
+        _windowRect.anchoredPosition = new Vector2(0, -1000f);
+
+        Sequence showSeq = DOTween.Sequence().SetUpdate(true);
+
+        showSeq.Append(_canvasGroup.DOFade(1f, 0.3f));
+
+        showSeq.Join(_windowRect.DOAnchorPos(Vector2.zero, 0.6f).SetEase(Ease.OutBack));
+
+        showSeq.OnComplete(() => {
+            _canvasGroup.interactable = true;
+            _canvasGroup.blocksRaycasts = true;
+        });
+    }
+
+    private void BackToMenu()
+    {
+        Debug.Log("Back to menu");
     }
 
     private void RestartGame()
@@ -82,5 +104,6 @@ public class GameOverUI : MonoBehaviour
     private void OnDestroy()
     {
         if (_character != null) _character.OnDied -= ShowGameOver;
+        _windowRect.DOKill();
     }
 }
