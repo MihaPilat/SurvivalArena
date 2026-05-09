@@ -27,7 +27,7 @@ public class CharacterView : MonoBehaviour
         if (_character != null)
         {
             _character.OnDamaged += PlayHitAnimation;
-            _character.OnDied += PlayDeathAnimation;
+            _character.OnDeathStarted += PlayDeathAnimation;
         }
     }
 
@@ -36,7 +36,7 @@ public class CharacterView : MonoBehaviour
         if (_character != null)
         {
             _character.OnDamaged -= PlayHitAnimation;
-            _character.OnDied -= PlayDeathAnimation;
+            _character.OnDeathStarted -= PlayDeathAnimation;
         }
     }
 

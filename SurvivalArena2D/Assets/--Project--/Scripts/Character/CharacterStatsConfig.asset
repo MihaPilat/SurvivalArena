@@ -17,3 +17,4 @@ MonoBehaviour:
   <DamageCooldown>k__BackingField: 0.2
   <BasePickupRadius>k__BackingField: 1
   <RadiusUpgradeStep>k__BackingField: 0.3
+  <DeathDelay>k__BackingField: 1

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Zenject;
 
@@ -6,6 +7,7 @@ public class Character : MonoBehaviour, IEnemyTarget
 {
     public event Action<int, int> OnHealthChanged;
     public event Action OnDied;
+    public event Action OnDeathStarted;
     public event Action OnDamaged;
 
     [SerializeField] private ExperienceCollector _collector;
@@ -18,6 +20,8 @@ public class Character : MonoBehaviour, IEnemyTarget
 
     private float _currentPickupRadius;
     private float _radiusUpgradeStep;
+
+    private float _deathDelay;
 
     private IWeapon _currentWeapon;
 
@@ -41,6 +45,7 @@ public class Character : MonoBehaviour, IEnemyTarget
         _health = _maxHealth = characterStatsConfig.MaxHealth;
         Speed = characterStatsConfig.Speed;
         _damageCooldown = characterStatsConfig.DamageCooldown;
+        _deathDelay = characterStatsConfig.DeathDelay;
         _mouseInput = mouseInput;
         cameraService.SetTarget(transform);
         _levelSystem = levelSystem;
@@ -135,5 +140,17 @@ public class Character : MonoBehaviour, IEnemyTarget
 
     public ILevelable LevelProgress => _levelSystem;
 
-    private void Die() => OnDied?.Invoke();
+    private void Die()
+    {
+        StartCoroutine(DieWithDelay(_deathDelay));
+    }
+
+    private IEnumerator DieWithDelay(float delay)
+    {
+        OnDeathStarted?.Invoke();
+
+        yield return new WaitForSeconds(delay);
+
+        OnDied?.Invoke();
+    }
 }
