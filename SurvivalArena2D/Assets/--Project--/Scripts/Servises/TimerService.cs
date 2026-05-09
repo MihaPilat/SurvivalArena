@@ -22,7 +22,6 @@ public class TimerService : ITickable
     {
         int minutes = Mathf.FloorToInt(CurrentTime / 60);
         int seconds = Mathf.FloorToInt(CurrentTime % 60);
-        Debug.Log(string.Format("{0:00}:{1:00}", minutes, seconds));
         return string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }
