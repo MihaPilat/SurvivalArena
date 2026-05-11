@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: CharacterStatsConfig
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 25
-  <Speed>k__BackingField: 4
+  <Speed>k__BackingField: 3
   <DamageCooldown>k__BackingField: 0.2
   <BasePickupRadius>k__BackingField: 1
   <RadiusUpgradeStep>k__BackingField: 0.3
+  <SpeedUpgradeStep>k__BackingField: 0.5
+  <MaxSpeedUpgrade>k__BackingField: 3
   <DeathDelay>k__BackingField: 1

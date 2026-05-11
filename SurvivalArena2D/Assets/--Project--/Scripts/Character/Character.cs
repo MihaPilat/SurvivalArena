@@ -21,6 +21,10 @@ public class Character : MonoBehaviour, IEnemyTarget
     private float _currentPickupRadius;
     private float _radiusUpgradeStep;
 
+    private float _speedUpgradeStep;
+    private int _maxSpeedUpgrade;
+    private int _currentSpeedUpgrade;
+
     private float _deathDelay;
 
     private IWeapon _currentWeapon;
@@ -44,6 +48,8 @@ public class Character : MonoBehaviour, IEnemyTarget
     {
         _health = _maxHealth = characterStatsConfig.MaxHealth;
         Speed = characterStatsConfig.Speed;
+        _speedUpgradeStep = characterStatsConfig.SpeedUpgradeStep;
+        _maxSpeedUpgrade = characterStatsConfig.MaxSpeedUpgrade;
         _damageCooldown = characterStatsConfig.DamageCooldown;
         _deathDelay = characterStatsConfig.DeathDelay;
         _mouseInput = mouseInput;
@@ -128,6 +134,14 @@ public class Character : MonoBehaviour, IEnemyTarget
     {
         _currentPickupRadius += _radiusUpgradeStep;
         _collector.UpdateRadius(_currentPickupRadius);
+    }
+
+    public void IncreaseSpeed()
+    {
+        if (_currentSpeedUpgrade >= _maxSpeedUpgrade)
+            return;
+        _currentSpeedUpgrade++;
+        Speed += _speedUpgradeStep;
     }
 
     public void UpgradeWeaponAttackSpeed() => _currentWeapon?.IncreaseAttackSpeed();

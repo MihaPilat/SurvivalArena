@@ -24,3 +24,7 @@ MonoBehaviour:
   ProjectileLifetime: 3
   RotateToTarget: 1
   MagicRadius: 1.5
+  MaxSpecialUpgrades: 4
+  ScaleMultiplier: 1.2
+  ExtraProjectiles: 1
+  ExplosionRadiusIncreasePerUpgrade: 1
