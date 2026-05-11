@@ -17,6 +17,8 @@ public abstract class Projectile : MonoBehaviour, IProjectile
         InternalInit(direction, config.ProjectileSpeed, config.ProjectileLifetime, damage);
     }
 
+    public virtual void SetExplosionRadius(float radius) { }
+
     protected void OnTriggerEnter2D(Collider2D other)
     {
         if (!IsTargetLayer(other.gameObject.layer))

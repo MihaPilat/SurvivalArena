@@ -9,4 +9,8 @@ public class Bow : RangedWeapon
         float spread = UnityEngine.Random.Range(-_config.Spread, _config.Spread);
         return Quaternion.Euler(0, 0, spread) * direction;
     }
+    protected override void ExecuteSpecialUpgrade()
+    {
+        _extraProjectiles += _config.ExtraProjectiles;
+    }
 }

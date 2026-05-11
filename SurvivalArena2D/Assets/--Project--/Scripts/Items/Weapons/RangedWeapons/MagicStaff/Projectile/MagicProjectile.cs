@@ -9,6 +9,12 @@ public class MagicProjectile : Projectile
         base.Init(direction, config, damage);
         _explosionRadius = config.MagicRadius;
     }
+
+    public override void SetExplosionRadius(float radius)
+    {
+        _explosionRadius = radius;
+    }
+
     protected override void OnHit(Collider2D other)
     {
         Explode();

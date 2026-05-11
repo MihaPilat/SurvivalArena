@@ -10,6 +10,8 @@ public abstract class Weapon : MonoBehaviour, IWeapon
 
     public Sprite Icon => _config.Icon;
 
+    private int _specialUpgradeLevel = 0;
+
     private float _attackCooldown;
     private float _attackSpeedIncrease;
     protected float _lastAttackTime;
@@ -40,7 +42,6 @@ public abstract class Weapon : MonoBehaviour, IWeapon
 
         ExecuteAttack(origin, mouseInput);
     }
-    protected abstract void ExecuteAttack(Vector2 origin, IMouseInput mouseInput);
 
     public virtual void Rotate(Vector2 direction)
     {
@@ -50,6 +51,14 @@ public abstract class Weapon : MonoBehaviour, IWeapon
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
+    public void ApplySpecialUpgrade()
+    {
+        if (_specialUpgradeLevel >= _config.MaxSpecialUpgrades)
+            return;
+
+        _specialUpgradeLevel++;
+        ExecuteSpecialUpgrade();
+    }
     public void IncreaseAttackSpeed()
     {
         if (_currentAttackSpeedUpgrades >= _maxAttackSpeedUpgrades)
@@ -65,5 +74,10 @@ public abstract class Weapon : MonoBehaviour, IWeapon
             return;
         _currentDamage += amount;
     }
+
+    protected abstract void ExecuteAttack(Vector2 origin, IMouseInput mouseInput);
+
+    protected abstract void ExecuteSpecialUpgrade();
+
     protected bool CanAttack() => Time.time >= _lastAttackTime + _attackCooldown;
 }

@@ -10,4 +10,5 @@ public interface IWeapon
     void Rotate(Vector2 direction);
     void IncreaseAttackSpeed();
     void IncreaseDamage(int amount);
+    void ApplySpecialUpgrade();
 }

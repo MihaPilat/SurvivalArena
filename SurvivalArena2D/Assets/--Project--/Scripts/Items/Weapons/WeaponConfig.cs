@@ -20,4 +20,17 @@ public class WeaponConfig : ScriptableObject
 
     [Header("Magic")]
     public float MagicRadius = 1.5f;
+
+    [Header("Special Upgrade Settings")]
+    public int MaxSpecialUpgrades = 3;
+
+    [Header("Melee")]
+    public float ScaleMultiplier = 1.2f;
+
+    [Header("Ranged")]
+
+    public int ExtraProjectiles = 1;
+
+    [Header("Magic")]
+    public float ExplosionRadiusIncreasePerUpgrade = 1f;
 }

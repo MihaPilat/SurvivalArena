@@ -130,15 +130,11 @@ public class Character : MonoBehaviour, IEnemyTarget
         _collector.UpdateRadius(_currentPickupRadius);
     }
 
-    public void UpgradeWeaponAttackSpeed()
-    {
-        _currentWeapon?.IncreaseAttackSpeed();
-    }
+    public void UpgradeWeaponAttackSpeed() => _currentWeapon?.IncreaseAttackSpeed();
 
-    public void UpgradeWeaponDamage(int amount)
-    {
-        _currentWeapon?.IncreaseDamage(amount);
-    }
+    public void UpgradeWeaponDamage(int amount) => _currentWeapon?.IncreaseDamage(amount);
+
+    public void UpgradeWeaponSpecial() => _currentWeapon?.ApplySpecialUpgrade();
 
     private void UpdateAimDirection()
     {
