@@ -4,7 +4,5 @@ using UnityEngine;
 public class AttackSpeedUpgrade : UpgradeData
 {
     public override void Apply(Character character)
-    {
-        character.UpgradeWeaponAttackSpeed();
-    }
+        => character.UpgradeWeaponAttackSpeed();
 }

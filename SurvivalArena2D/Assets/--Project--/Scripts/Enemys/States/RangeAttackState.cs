@@ -54,7 +54,7 @@ public class RangeAttackState : EnemyState
         {
             Vector2 spreadDirection = AddSpread(direction, _enemyEntity.Config.Spread);
 
-            projectile.Init(spreadDirection, _enemyEntity.Config);
+            projectile.Init(spreadDirection, _enemyEntity.Config, _enemyEntity.Damage);
         }
     }
 

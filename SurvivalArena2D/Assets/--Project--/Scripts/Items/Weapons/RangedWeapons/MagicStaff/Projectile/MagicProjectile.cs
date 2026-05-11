@@ -4,9 +4,9 @@ public class MagicProjectile : Projectile
 {
     private float _explosionRadius;
 
-    public override void Init(Vector2 direction, WeaponConfig config)
+    public override void Init(Vector2 direction, WeaponConfig config, int damage)
     {
-        base.Init(direction, config);
+        base.Init(direction, config, damage);
         _explosionRadius = config.MagicRadius;
     }
     protected override void OnHit(Collider2D other)

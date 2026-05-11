@@ -7,9 +7,6 @@ public abstract class Weapon : MonoBehaviour, IWeapon
 
     [SerializeField] protected WeaponConfig _config;
 
-    public WeaponType Type => _config.Type;
-    public WeaponConfig Config => _config;
-    public int Damage => _config.Damage;
 
     public Sprite Icon => _config.Icon;
 
@@ -17,14 +14,21 @@ public abstract class Weapon : MonoBehaviour, IWeapon
     private float _attackSpeedIncrease;
     protected float _lastAttackTime;
 
+    private int _currentDamage;
+
     private int _maxAttackSpeedUpgrades;
     private int _currentAttackSpeedUpgrades;
+
+    public WeaponType Type => _config.Type;
+    public WeaponConfig Config => _config;
+    public int Damage => _currentDamage;
 
     private void Awake()
     {
         _attackCooldown = _config.AttackCooldown;
         _attackSpeedIncrease = _config.AttackSpeedIncrease;
-        _maxAttackSpeedUpgrades = Config._maxAttackSpeedUpgrades;
+        _maxAttackSpeedUpgrades = _config._maxAttackSpeedUpgrades;
+        _currentDamage = _config.Damage;
     }
 
     public void Attack(Vector2 origin, IMouseInput mouseInput)
@@ -55,6 +59,11 @@ public abstract class Weapon : MonoBehaviour, IWeapon
         if (_attackCooldown < 0.05f)
             _attackCooldown = 0.05f;
     }
-
+    public void IncreaseDamage(int amount)
+    {
+        if (amount <= 0)
+            return;
+        _currentDamage += amount;
+    }
     protected bool CanAttack() => Time.time >= _lastAttackTime + _attackCooldown;
 }

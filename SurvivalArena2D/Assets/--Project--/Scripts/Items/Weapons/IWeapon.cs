@@ -9,4 +9,5 @@ public interface IWeapon
     void Attack(Vector2 origin, IMouseInput mouseInput);
     void Rotate(Vector2 direction);
     void IncreaseAttackSpeed();
+    void IncreaseDamage(int amount);
 }

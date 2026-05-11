@@ -8,13 +8,13 @@ public abstract class Projectile : MonoBehaviour, IProjectile
     protected Rigidbody2D _rb;
     protected int _damage;
 
-    public virtual void Init(Vector2 direction, WeaponConfig config)
+    public virtual void Init(Vector2 direction, WeaponConfig config, int damage)
     {
-        InternalInit(direction, config.ProjectileSpeed, config.ProjectileLifetime, config.Damage);
+        InternalInit(direction, config.ProjectileSpeed, config.ProjectileLifetime, damage);
     }
-    public virtual void Init(Vector2 direction, EnemyConfig config)
+    public virtual void Init(Vector2 direction, EnemyConfig config, int damage)
     {
-        InternalInit(direction, config.ProjectileSpeed, config.ProjectileLifetime, config.Damage);
+        InternalInit(direction, config.ProjectileSpeed, config.ProjectileLifetime, damage);
     }
 
     protected void OnTriggerEnter2D(Collider2D other)

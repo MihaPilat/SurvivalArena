@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,12 +20,9 @@ public class DamageHitbox : MonoBehaviour
         _filter = new ContactFilter2D();
         _filter.useTriggers = true;
     }
-    public void Init(int damage)
+    public void Enable(int currentDamage)
     {
-        _damage = damage;
-    }
-    public void Enable()
-    {
+        _damage = currentDamage;
         _hitTargets = new HashSet<IDamageable>();
         _collider.enabled = true;
 

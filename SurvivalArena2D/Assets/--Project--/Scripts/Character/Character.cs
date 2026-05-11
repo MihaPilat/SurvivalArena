@@ -135,6 +135,11 @@ public class Character : MonoBehaviour, IEnemyTarget
         _currentWeapon?.IncreaseAttackSpeed();
     }
 
+    public void UpgradeWeaponDamage(int amount)
+    {
+        _currentWeapon?.IncreaseDamage(amount);
+    }
+
     private void UpdateAimDirection()
     {
         Vector2 dir = _mouseInput.MouseWorldPosition - (Vector2)transform.position;

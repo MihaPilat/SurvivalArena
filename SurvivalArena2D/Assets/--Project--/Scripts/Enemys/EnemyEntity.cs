@@ -24,6 +24,7 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     public Transform Target => _character.transform;
 
     public bool IsDie => _isDie;
+    public int Damage => _config.Damage;
     private bool _isDie;
     public IStateSwitcher StateSwitcher => _stateMachine;
 

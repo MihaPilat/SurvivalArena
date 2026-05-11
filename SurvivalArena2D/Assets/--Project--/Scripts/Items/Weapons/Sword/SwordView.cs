@@ -12,10 +12,6 @@ public class SwordView : MonoBehaviour
         _animator = GetComponent<Animator>();
         _sword = GetComponentInParent<Sword>();
     }
-    private void Start()
-    {
-        _hitbox.Init(_sword.Damage);
-    }
     private void OnEnable()
     {
         if (_sword != null)
@@ -29,7 +25,7 @@ public class SwordView : MonoBehaviour
 
     public void EnableHitbox()
     {
-        _hitbox.Enable();
+        _hitbox.Enable(_sword.Damage);
     }
 
     public void DisableHitbox()

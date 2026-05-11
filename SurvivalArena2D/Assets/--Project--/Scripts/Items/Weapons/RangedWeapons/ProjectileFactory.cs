@@ -6,7 +6,8 @@ public class ProjectileFactory
         GameObject prefab,
         Vector2 position,
         Vector2 direction,
-        WeaponConfig config)
+        WeaponConfig config,
+        int damage)
     {
         if (prefab == null)
         {
@@ -16,7 +17,7 @@ public class ProjectileFactory
         GameObject obj = Object.Instantiate(prefab, position, Quaternion.identity);
 
         var projectile = obj.GetComponent<IProjectile>();
-        projectile.Init(direction, config);
+        projectile.Init(direction, config, damage);
 
         return projectile;
     }
