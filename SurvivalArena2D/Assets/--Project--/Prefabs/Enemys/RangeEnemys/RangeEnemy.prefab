@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 911392253142699679}
   - component: {fileID: 2205273334899427699}
   - component: {fileID: 5531853371694869945}
+  - component: {fileID: 3463475739849362638}
   m_Layer: 8
   m_Name: RangeEnemy
   m_TagString: Untagged
@@ -264,3 +265,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8494688, y: 1.2559032}
   m_EdgeRadius: 0
+--- !u!114 &3463475739849362638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5360802143495552542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 025e609311f5eaf489650c555066c2ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _orbPrefab: {fileID: 3480793544653023980, guid: e602888769b55404f91f419715b9baec, type: 3}

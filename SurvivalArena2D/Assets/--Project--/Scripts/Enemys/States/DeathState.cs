@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DeathState : EnemyState
@@ -17,7 +15,7 @@ public class DeathState : EnemyState
             collider.enabled = false;
         }
         Object.Destroy(_enemyEntity.gameObject, 2f);
-        //потом возращение в пулл
+        //РїРѕС‚РѕРј РІРѕР·СЂР°С‰РµРЅРёРµ РІ РїСѓР»Р»
     }
 
     public override void Exit()

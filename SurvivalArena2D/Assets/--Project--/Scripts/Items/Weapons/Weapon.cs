@@ -13,7 +13,19 @@ public abstract class Weapon : MonoBehaviour, IWeapon
 
     public Sprite Icon => _config.Icon;
 
+    private float _attackCooldown;
+    private float _attackSpeedIncrease;
     protected float _lastAttackTime;
+
+    private int _maxAttackSpeedUpgrades;
+    private int _currentAttackSpeedUpgrades;
+
+    private void Awake()
+    {
+        _attackCooldown = _config.AttackCooldown;
+        _attackSpeedIncrease = _config.AttackSpeedIncrease;
+        _maxAttackSpeedUpgrades = Config._maxAttackSpeedUpgrades;
+    }
 
     public void Attack(Vector2 origin, IMouseInput mouseInput)
     {
@@ -34,5 +46,15 @@ public abstract class Weapon : MonoBehaviour, IWeapon
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    protected bool CanAttack() => Time.time >= _lastAttackTime + _config.AttackCooldown;
+    public void IncreaseAttackSpeed()
+    {
+        if (_currentAttackSpeedUpgrades >= _maxAttackSpeedUpgrades)
+            return;
+        _currentAttackSpeedUpgrades++;
+        _attackCooldown -= _attackSpeedIncrease;
+        if (_attackCooldown < 0.05f)
+            _attackCooldown = 0.05f;
+    }
+
+    protected bool CanAttack() => Time.time >= _lastAttackTime + _attackCooldown;
 }

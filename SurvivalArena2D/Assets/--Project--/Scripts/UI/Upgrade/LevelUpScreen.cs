@@ -41,7 +41,7 @@ public class LevelUpScreen : MonoBehaviour
 
     private void HandleLevelUp(int newLevel)
     {
-        if (_panel.activeSelf) return;
+        if (_panel.activeSelf&&_character.IsDie) return;
 
         DOVirtual.DelayedCall(0.5f, Show).SetUpdate(true);
     }

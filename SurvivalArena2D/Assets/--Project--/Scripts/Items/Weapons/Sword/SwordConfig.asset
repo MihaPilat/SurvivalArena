@@ -16,6 +16,8 @@ MonoBehaviour:
   Type: 0
   Damage: 15
   AttackCooldown: 0.35
+  AttackSpeedIncrease: 0.03
+  _maxAttackSpeedUpgrades: 5
   ProjectilePrefab: {fileID: 0}
   Spread: 2
   ProjectileSpeed: 0

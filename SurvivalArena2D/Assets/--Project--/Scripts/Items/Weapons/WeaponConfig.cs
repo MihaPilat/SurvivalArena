@@ -7,7 +7,9 @@ public class WeaponConfig : ScriptableObject
     public WeaponType Type;
     public int Damage;
 
-    public float AttackCooldown;
+    public float AttackCooldown= 0.8f;
+    public float AttackSpeedIncrease=0.05f;
+    public int _maxAttackSpeedUpgrades=5;
 
     [Header("Ranged")]
     public GameObject ProjectilePrefab;

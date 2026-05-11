@@ -130,6 +130,11 @@ public class Character : MonoBehaviour, IEnemyTarget
         _collector.UpdateRadius(_currentPickupRadius);
     }
 
+    public void UpgradeWeaponAttackSpeed()
+    {
+        _currentWeapon?.IncreaseAttackSpeed();
+    }
+
     private void UpdateAimDirection()
     {
         Vector2 dir = _mouseInput.MouseWorldPosition - (Vector2)transform.position;

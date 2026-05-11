@@ -15,7 +15,9 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: f89279a68d90b40a9b27396b2d340440, type: 3}
   Type: 1
   Damage: 5
-  AttackCooldown: 0.2
+  AttackCooldown: 0.4
+  AttackSpeedIncrease: 0.05
+  _maxAttackSpeedUpgrades: 5
   ProjectilePrefab: {fileID: 5098389133151337143, guid: d29ee81e30a608640b808db1f32504ac, type: 3}
   Spread: 5
   ProjectileSpeed: 12

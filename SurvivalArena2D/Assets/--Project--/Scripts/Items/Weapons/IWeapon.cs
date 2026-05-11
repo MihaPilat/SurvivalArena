@@ -8,4 +8,5 @@ public interface IWeapon
     Sprite Icon { get; }
     void Attack(Vector2 origin, IMouseInput mouseInput);
     void Rotate(Vector2 direction);
+    void IncreaseAttackSpeed();
 }
