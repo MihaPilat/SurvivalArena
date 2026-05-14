@@ -14,15 +14,21 @@ public class DeathState : EnemyState
         {
             collider.enabled = false;
         }
-        Object.Destroy(_enemyEntity.gameObject, 2f);
-        //потом возращение в пулл
     }
 
     public override void Exit()
     {
+        _enemyEntity.Agent.enabled = true;
+
+        if (_enemyEntity.TryGetComponent(out Collider2D collider))
+        {
+            collider.enabled = true;
+        }
     }
 
     public override void Update()
     {
+        if(_enemyEntity.IsDie==false)
+            StateSwitcher.SwitchState<ChaseState>();
     }
 }

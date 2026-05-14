@@ -26,14 +26,13 @@ public class EnemySpawner : MonoBehaviour, IWaveHandler
     private float _spawnBudget;
     private int _currentWave = 0;
 
-
-    private IInstantiator _instantiator;
+    private PoolFactory _enemyFactory;
 
     [Inject]
-    private void Construct(Character character, IInstantiator instantiator)
+    private void Construct(Character character, PoolFactory enemyFactory)
     {
         _characterTransform = character.transform;
-        _instantiator = instantiator;
+        _enemyFactory = enemyFactory;
     }
     void Update()
     {
@@ -74,11 +73,14 @@ public class EnemySpawner : MonoBehaviour, IWaveHandler
 
         if (availableEnemies.Count == 0) return false;
 
-        var enemyToSpawn = availableEnemies[Random.Range(0, availableEnemies.Count)];
+        var enemyData = availableEnemies[Random.Range(0, availableEnemies.Count)];
 
-        _instantiator.InstantiatePrefab(enemyToSpawn.Prefab, GetRandomSpawnPoint(), Quaternion.identity, null);
+        EnemyEntity prefabComponent = enemyData.Prefab.GetComponent<EnemyEntity>();
+        EnemyEntity enemy = _enemyFactory.Get<EnemyEntity>(prefabComponent);
+        enemy.Init(prefabComponent, _enemyFactory);
+        enemy.transform.position = GetRandomSpawnPoint();
 
-        _spawnBudget -= enemyToSpawn.Cost;
+        _spawnBudget -= enemyData.Cost;
         return true;
     }
 

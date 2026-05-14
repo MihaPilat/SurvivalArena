@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -18,6 +19,11 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     protected Character _character;
     private NavMeshAgent _agent;
 
+    private PoolFactory _originFactory;
+    private EnemyEntity _originPrefab;
+
+    private float _deathDelay=1.5f;
+
     public NavMeshAgent Agent => _agent;
     public Character Character => _character;
     public EnemyConfig Config => _config;
@@ -25,6 +31,9 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
 
     public bool IsDie => _isDie;
     public int Damage => _config.Damage;
+
+    public PoolFactory PoolFactory => _originFactory;
+
     private bool _isDie;
     public IStateSwitcher StateSwitcher => _stateMachine;
 
@@ -35,6 +44,15 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     {
         _character = character;
     }
+
+    public void Init(EnemyEntity prefab, PoolFactory factory)
+    {
+        _originPrefab = prefab;
+        _originFactory = factory;
+        _isDie = false;
+        _currentHp = _config.Health;
+    }
+
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -89,8 +107,17 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     }
     private void Die()
     {
+        if (_isDie)
+            return;
         _isDie = true;
         OnDied?.Invoke();
+
+        StartCoroutine(DeathCoroutine());
     }
 
+    private IEnumerator DeathCoroutine()
+    {
+        yield return new WaitForSeconds(_deathDelay);
+        _originFactory.Reclaim(this, _originPrefab);
+    }
 }

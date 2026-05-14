@@ -29,7 +29,7 @@ public class MagicProjectile : Projectile
             TryApplyDamage(hit);
         }
 
-        Destroy(gameObject);
+        ReturnToPool();
     }
     private void OnDrawGizmosSelected()
     {

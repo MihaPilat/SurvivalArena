@@ -4,15 +4,15 @@ using Zenject;
 public abstract class RangedWeapon : Weapon
 {
     [SerializeField] protected Transform _firePoint;
-    private ProjectileFactory _factory;
+    private PoolFactory _poolFactory;
 
     protected int _extraProjectiles = 0;
     protected float _explosionRadiusModifier = 0f;
 
     [Inject]
-    private void Construct(ProjectileFactory projectileFactory)
+    private void Construct(PoolFactory poolFactory)
     {
-        _factory = projectileFactory;
+        _poolFactory = poolFactory;
     }
     protected override void ExecuteAttack(Vector2 origin, IMouseInput mouseInput)
     {
@@ -21,6 +21,8 @@ public abstract class RangedWeapon : Weapon
         int totalProjectiles = 1 + _extraProjectiles;
         float angleStep = 10f;
 
+        Projectile prefabComponent = _config.ProjectilePrefab.GetComponent<Projectile>();
+
         for (int i = 0; i < totalProjectiles; i++)
         {
             float offset = (i - (totalProjectiles - 1) / 2f) * angleStep;
@@ -28,7 +30,13 @@ public abstract class RangedWeapon : Weapon
 
             dir = ProcessDirection(dir);
 
-            var projectile = _factory.Create(_config.ProjectilePrefab, _firePoint.position, dir, _config, Damage);
+            Projectile projectile = _poolFactory.Get<Projectile>(prefabComponent);
+
+            projectile.transform.position = _firePoint.position;
+
+            projectile.SetPoolData(prefabComponent, _poolFactory);
+
+            projectile.Init(dir, _config, Damage);
 
             float finalRadius = _config.MagicRadius + _explosionRadiusModifier;
             projectile.SetExplosionRadius(finalRadius);

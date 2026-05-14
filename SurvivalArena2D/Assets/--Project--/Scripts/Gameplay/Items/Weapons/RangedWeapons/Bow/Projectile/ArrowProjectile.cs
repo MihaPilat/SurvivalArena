@@ -15,5 +15,9 @@ public class ArrowProjectile : Projectile
             }
         }
     }
-    //после перенесения в пулл, не забыть очистить старые цели
+    protected override void ResetState()
+    {
+        base.ResetState();
+        _hitTargets.Clear();
+    }
 }

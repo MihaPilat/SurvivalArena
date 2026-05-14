@@ -45,17 +45,17 @@ public class RangeAttackState : EnemyState
     {
         Vector2 direction = (_enemyEntity.Target.position - _enemyEntity.transform.position).normalized;
 
-        GameObject projectileObj = Object.Instantiate(
-            _enemyEntity.Config.ProjectilePrefab,
-            _enemyEntity.transform.position,
-            Quaternion.identity
-        );
-        if (projectileObj.TryGetComponent(out Projectile projectile))
-        {
-            Vector2 spreadDirection = AddSpread(direction, _enemyEntity.Config.Spread);
+        Projectile prefabComponent = _enemyEntity.Config.ProjectilePrefab.GetComponent<Projectile>();
 
-            projectile.Init(spreadDirection, _enemyEntity.Config, _enemyEntity.Damage);
-        }
+        Projectile projectile = _enemyEntity.PoolFactory.Get<Projectile>(prefabComponent);
+
+        projectile.transform.position = _enemyEntity.transform.position;
+
+        projectile.SetPoolData(prefabComponent, _enemyEntity.PoolFactory);
+
+        Vector2 spreadDirection = AddSpread(direction, _enemyEntity.Config.Spread);
+
+        projectile.Init(spreadDirection, _enemyEntity.Config, _enemyEntity.Damage);
     }
 
     private Vector2 AddSpread(Vector2 direction, float spreadDegrees)
