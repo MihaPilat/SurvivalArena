@@ -10,10 +10,12 @@ public class IdleState : EnemyState
     public override void Enter()
     {
         _timer = 0f;
+        View.StartIdling();
     }
 
     public override void Exit()
     {
+        View.StopIdling();
     }
 
     public override void Update()

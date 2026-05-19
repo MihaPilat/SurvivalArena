@@ -14,6 +14,7 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     public event Action OnAttack;
 
     [SerializeField] private EnemyConfig _config;
+    [SerializeField] private EnemyView _enemyView;
 
     protected StateMachine _stateMachine;
     protected Character _character;
@@ -22,8 +23,9 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     private PoolFactory _originFactory;
     private EnemyEntity _originPrefab;
 
-    private float _deathDelay=1.5f;
+    private float _deathDelay=2f;
 
+    public EnemyView View => _enemyView;
     public NavMeshAgent Agent => _agent;
     public Character Character => _character;
     public EnemyConfig Config => _config;

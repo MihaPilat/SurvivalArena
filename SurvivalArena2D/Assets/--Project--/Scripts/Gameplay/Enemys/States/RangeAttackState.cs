@@ -12,6 +12,7 @@ public class RangeAttackState : EnemyState
     public override void Enter()
     {
         _enemyEntity.Agent.isStopped = true;
+        View.StartIdling();
     }
 
     public override void Exit()
@@ -19,6 +20,7 @@ public class RangeAttackState : EnemyState
         _enemyEntity.Agent.isStopped = false;
 
         _lastAttackTime = Time.time + Random.Range(0, 2f);
+        View.StopIdling();
     }
 
     public override void Update()

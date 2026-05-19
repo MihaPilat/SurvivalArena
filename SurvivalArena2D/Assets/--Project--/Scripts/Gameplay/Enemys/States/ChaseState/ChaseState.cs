@@ -7,7 +7,11 @@ public class ChaseState : EnemyState
     {
         _behaviour = chaseBehaviour;
     }
-    public override void Enter() => _enemyEntity.Agent.isStopped = false;
+    public override void Enter()
+    {
+        View.StartMoving();
+        _enemyEntity.Agent.isStopped = false;
+    }
     public override void Update()
     {
         _enemyEntity.Agent.SetDestination(_enemyEntity.Target.position);
@@ -18,5 +22,9 @@ public class ChaseState : EnemyState
         if(_enemyEntity.IsDie)
             StateSwitcher.SwitchState<DeathState>();
     }
-    public override void Exit() => _enemyEntity.Agent.isStopped = true;
+    public override void Exit()
+    {
+        View.StopMoving();
+        _enemyEntity.Agent.isStopped = true;
+    }
 }

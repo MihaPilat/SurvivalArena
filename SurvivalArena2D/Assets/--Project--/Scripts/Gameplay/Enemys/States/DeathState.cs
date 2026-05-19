@@ -8,6 +8,7 @@ public class DeathState : EnemyState
 
     public override void Enter()
     {
+        View.StartDead();
         _enemyEntity.Agent.enabled = false;
 
         if (_enemyEntity.TryGetComponent(out Collider2D collider))
@@ -18,6 +19,7 @@ public class DeathState : EnemyState
 
     public override void Exit()
     {
+        View.StopDead();
         _enemyEntity.Agent.enabled = true;
 
         if (_enemyEntity.TryGetComponent(out Collider2D collider))

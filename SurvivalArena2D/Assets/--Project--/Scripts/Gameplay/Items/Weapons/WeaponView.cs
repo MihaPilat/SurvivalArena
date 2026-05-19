@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class WeaponView : MonoBehaviour
 {
+    private const string AttackTrigger = "Attack";
+
     private Animator _animator;
     private WeaponController _weaponController;
     private IWeapon _currentWeapon;
@@ -45,6 +47,6 @@ public class WeaponView : MonoBehaviour
 
     private void PlayAttackAnimation()
     {
-        _animator.SetTrigger("Attack");
+        _animator.SetTrigger(AttackTrigger);
     }
 }

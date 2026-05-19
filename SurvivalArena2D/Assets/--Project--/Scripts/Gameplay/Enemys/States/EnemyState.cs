@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class EnemyState: IState
 {
     protected readonly EnemyEntity _enemyEntity;
+    protected EnemyView View => _enemyEntity.View;
 
     protected IStateSwitcher StateSwitcher => _enemyEntity.StateSwitcher;
 

@@ -44,7 +44,7 @@ Animator:
   m_GameObject: {fileID: 246730429449227001}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 040d7b79d8a2ea74780d7e6953ad6dad, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -193,6 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 5912c09a0f5540f4b94184d02b1568d6, type: 2}
+  _enemyView: {fileID: 7442820312247453385}
 --- !u!50 &2205273334899427699
 Rigidbody2D:
   serializedVersion: 4
