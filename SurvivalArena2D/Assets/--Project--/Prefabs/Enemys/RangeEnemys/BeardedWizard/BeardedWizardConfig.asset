@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb57dd8ec07e3d499971e8b23fd1f2a, type: 3}
+  m_Name: BeardedWizardConfig
+  m_EditorClassIdentifier: 
+  Health: 20
+  Speed: 1.4
+  StopDistance: 1.5
+  WaitingTime: 1
+  ContactDamage: 5
+  ExpAmount: 20
+  MinAttackRange: 5
+  MaxAttackRange: 8
+  AttackCooldown: 8
+  Spread: 2
+  ProjectileSpeed: 6
+  ProjectileLifetime: 3
+  ProjectilePrefab: {fileID: 1170835258638870793, guid: 5bbf69f29bb12744899bf1f11e042aed, type: 3}
+  Damage: 5
+  MagicRadius: 1.5

@@ -85,6 +85,13 @@ public class EnemyView : MonoBehaviour
     public void StartDead() => _animator.SetBool(IsDead, true);
     public void StopDead() => _animator.SetBool(IsDead, false);
 
+    public void OnAttackAnimationEvent()
+    {
+        if (_enemyEntity != null)
+        {
+            _enemyEntity.PerformRangeAttack();
+        }
+    }
 
     private void Flip(float xVelocity)
     {

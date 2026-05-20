@@ -38,26 +38,9 @@ public class RangeAttackState : EnemyState
 
         if (Time.time >= _lastAttackTime + _enemyEntity.Config.AttackCooldown)
         {
-            Attack();
             _enemyEntity.TriggerAttack();
             _lastAttackTime = Time.time;
         }
-    }
-    private void Attack()
-    {
-        Vector2 direction = (_enemyEntity.Target.position - _enemyEntity.transform.position).normalized;
-
-        Projectile prefabComponent = _enemyEntity.Config.ProjectilePrefab.GetComponent<Projectile>();
-
-        Projectile projectile = _enemyEntity.PoolFactory.Get<Projectile>(prefabComponent);
-
-        projectile.transform.position = _enemyEntity.transform.position;
-
-        projectile.SetPoolData(prefabComponent, _enemyEntity.PoolFactory);
-
-        Vector2 spreadDirection = AddSpread(direction, _enemyEntity.Config.Spread);
-
-        projectile.Init(spreadDirection, _enemyEntity.Config, _enemyEntity.Damage);
     }
 
     private Vector2 AddSpread(Vector2 direction, float spreadDegrees)

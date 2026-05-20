@@ -160872,9 +160872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _allEnemies:
-  - {fileID: 11400000, guid: a2d16e76637bf80448a93a0afa28e1a6, type: 2}
-  - {fileID: 11400000, guid: efea311fbcac8b24495c310022d66a71, type: 2}
-  - {fileID: 11400000, guid: 5909d07e74d906942a25322d84d6b07f, type: 2}
+  - {fileID: 11400000, guid: 1993a0f5df0c66941ab5af55f4776965, type: 2}
   _spawnInterval: 5
   _budgetGenerationRate: 10
   _minSpawnRadius: 10

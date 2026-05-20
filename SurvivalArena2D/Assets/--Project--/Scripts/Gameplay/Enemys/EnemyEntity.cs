@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
-
+using Random = UnityEngine.Random;
 [RequireComponent(typeof(NavMeshAgent))]
 
 public abstract class EnemyEntity : MonoBehaviour, IDamageable
@@ -93,6 +93,24 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     {
         OnAttack?.Invoke();
     }
+
+    public void PerformRangeAttack()
+    {
+        if (IsDie || _character == null) return;
+
+        Vector2 direction = (Target.position - transform.position).normalized;
+        Projectile prefabComponent = _config.ProjectilePrefab.GetComponent<Projectile>();
+        Projectile projectile = _originFactory.Get<Projectile>(prefabComponent);
+
+        projectile.transform.position = transform.position;
+        projectile.SetPoolData(prefabComponent, _originFactory);
+
+        float randomAngle = Random.Range(-_config.Spread, _config.Spread);
+        Vector2 spreadDirection = Quaternion.Euler(0, 0, randomAngle) * direction;
+
+        projectile.Init(spreadDirection, _config, Damage);
+    }
+
     protected abstract List<IState> AddStates();
     private void HandleContactDamage(Collider2D other)
     {

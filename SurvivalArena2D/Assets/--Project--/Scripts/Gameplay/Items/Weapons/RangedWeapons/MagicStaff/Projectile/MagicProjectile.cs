@@ -10,6 +10,12 @@ public class MagicProjectile : Projectile
         _explosionRadius = config.MagicRadius;
     }
 
+    public override void Init(Vector2 direction, EnemyConfig config, int damage)
+    {
+        base.Init(direction, config, damage);
+        _explosionRadius = config.MagicRadius;
+    }
+
     public override void SetExplosionRadius(float radius)
     {
         _explosionRadius = radius;

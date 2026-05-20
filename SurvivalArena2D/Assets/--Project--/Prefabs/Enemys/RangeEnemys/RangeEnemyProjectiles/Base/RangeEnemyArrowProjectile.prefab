@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1921075905714860717}
   - component: {fileID: 2611036760518147438}
   m_Layer: 0
-  m_Name: RangeEnemyProjectile
+  m_Name: RangeEnemyArrowProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

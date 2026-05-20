@@ -20,4 +20,6 @@ public class EnemyConfig : ScriptableObject
     public GameObject ProjectilePrefab;
     public int Damage=5;
 
+    [Header("Magic")]
+    public float MagicRadius = 1.5f;
 }
