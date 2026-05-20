@@ -2,16 +2,19 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public abstract class Projectile : MonoBehaviour, IProjectile
+public abstract class Projectile : MonoBehaviour, IProjectile, IDamageable
 {
     [SerializeField] protected LayerMask _targetLayer;
+    [SerializeField] private int _health = 1;
 
     protected Rigidbody2D _rb;
     protected int _damage;
+    private int _currentHealth;
 
     private PoolFactory _poolFactory;
     private Projectile _originPrefab;
     private Coroutine _lifeTimeCoroutine;
+    private bool _isDestroyed;
 
     public void SetPoolData(Projectile prefab, PoolFactory factory)
     {
@@ -29,6 +32,24 @@ public abstract class Projectile : MonoBehaviour, IProjectile
     }
 
     public virtual void SetExplosionRadius(float radius) { }
+
+    public void TakeDamage(int damage)
+    {
+        if (_isDestroyed || damage <= 0) return;
+
+        _currentHealth -= damage;
+
+        if (_currentHealth <= 0)
+        {
+            _isDestroyed = true;
+            OnProjectileDestroyed();
+        }
+    }
+
+    protected virtual void OnProjectileDestroyed()
+    {
+        ReturnToPool();
+    }
 
     protected void OnTriggerEnter2D(Collider2D other)
     {
@@ -60,6 +81,9 @@ public abstract class Projectile : MonoBehaviour, IProjectile
         if (_lifeTimeCoroutine != null) StopCoroutine(_lifeTimeCoroutine);
 
         _damage = damage;
+        _isDestroyed = false;
+        _currentHealth = _health;
+
         _rb.velocity = direction.normalized * speed;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BrightRobotSpawnData
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1346177534870628249, guid: b36e17ed77ae3a44eaae6c136186ecb9, type: 3}
-  Cost: 2
+  Cost: 5
   MinDangerLevel: 1
