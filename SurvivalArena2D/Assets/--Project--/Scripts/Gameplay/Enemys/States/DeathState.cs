@@ -19,13 +19,14 @@ public class DeathState : EnemyState
 
     public override void Exit()
     {
-        View.StopDead();
         _enemyEntity.Agent.enabled = true;
 
         if (_enemyEntity.TryGetComponent(out Collider2D collider))
         {
             collider.enabled = true;
         }
+
+        View.StopDead();
     }
 
     public override void Update()

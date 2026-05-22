@@ -160874,10 +160874,16 @@ MonoBehaviour:
   _allEnemies:
   - {fileID: 11400000, guid: 1993a0f5df0c66941ab5af55f4776965, type: 2}
   - {fileID: 11400000, guid: 5909d07e74d906942a25322d84d6b07f, type: 2}
+  - {fileID: 11400000, guid: 8667ba0d08d2fee4cb14a6377aee25d5, type: 2}
+  - {fileID: 11400000, guid: b378b4b2c79e3c441b56852c3638ce49, type: 2}
+  - {fileID: 11400000, guid: a3c2732f2a707af45a00f4fd7228f2ff, type: 2}
+  - {fileID: 11400000, guid: e42d74a03afaca54493940a721d21666, type: 2}
+  - {fileID: 11400000, guid: dc937f68726adc64fb38e4ced12bafa0, type: 2}
+  - {fileID: 11400000, guid: 45a9e0b6473efab40b860a90326145d8, type: 2}
   _spawnInterval: 5
   _budgetGenerationRate: 10
-  _minSpawnRadius: 10
-  _maxSpawnRadius: 35
+  _minSpawnRadius: 15
+  _maxSpawnRadius: 20
 --- !u!1001 &1862801727
 PrefabInstance:
   m_ObjectHideFlags: 0

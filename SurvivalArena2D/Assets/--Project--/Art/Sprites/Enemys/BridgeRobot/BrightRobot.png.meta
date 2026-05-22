@@ -370,22 +370,43 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gemini_Generated_Image_7aelve7aelve7ael-Photoroom_455
+      name: BrightRobot_0
       rect:
         serializedVersion: 2
-        x: 1184
-        y: 21
+        x: 992
+        y: 194
         width: 192
         height: 160
       alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+      pivot: {x: 0.48397636, y: 0.4134677}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b92610d6a87e254da06500eda80426d
-      internalID: 1555486268
+      spriteID: b853180b8736be246befb36c7c62ef55
+      internalID: -1527295010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrightRobot_1
+      rect:
+        serializedVersion: 2
+        x: 1189
+        y: 194
+        width: 187
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33f96eedb51bf6b49b1b4bda505d77ce
+      internalID: -855654236
       vertices: []
       indices: 
       edges: []
@@ -401,6 +422,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      BrightRobot_0: -1527295010
+      BrightRobot_1: -855654236
       Gemini_Generated_Image_7aelve7aelve7ael-Photoroom_0: 706838930
       Gemini_Generated_Image_7aelve7aelve7ael-Photoroom_1: 1331101423
       Gemini_Generated_Image_7aelve7aelve7ael-Photoroom_10: 219075355

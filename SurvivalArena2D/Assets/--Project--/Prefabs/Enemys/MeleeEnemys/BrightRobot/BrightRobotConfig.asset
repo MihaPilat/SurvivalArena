@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 4
   Speed: 2
-  StopDistance: 1.5
+  StopDistance: 1
   WaitingTime: 1
   ContactDamage: 5
   ExpAmount: 10
@@ -26,3 +26,4 @@ MonoBehaviour:
   ProjectileLifetime: 3
   ProjectilePrefab: {fileID: 0}
   Damage: 5
+  MagicRadius: 1.5

@@ -22,6 +22,7 @@ public class EnemyView : MonoBehaviour
     private Color _originalColor;
     private Coroutine _hitEffectCoroutine;
 
+
     void Awake()
     {
         _animator = GetComponent<Animator>();

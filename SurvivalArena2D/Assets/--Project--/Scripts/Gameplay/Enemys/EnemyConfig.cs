@@ -5,7 +5,7 @@ public class EnemyConfig : ScriptableObject
 {
     public float Health = 100f;
     public float Speed = 3.5f;
-    public float StopDistance = 1.5f;
+    public float StopDistance = 1f;
     public float WaitingTime = 1f;
     public int ContactDamage = 5;
     public int ExpAmount = 10;

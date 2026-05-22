@@ -16,6 +16,8 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     [SerializeField] private EnemyConfig _config;
     [SerializeField] private EnemyView _enemyView;
 
+    [SerializeField] private Transform _projectileSpawnPoint;
+
     protected StateMachine _stateMachine;
     protected Character _character;
     private NavMeshAgent _agent;
@@ -23,13 +25,14 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     private PoolFactory _originFactory;
     private EnemyEntity _originPrefab;
 
-    private float _deathDelay=2f;
+    private float _deathDelay = 2f;
 
     public EnemyView View => _enemyView;
     public NavMeshAgent Agent => _agent;
     public Character Character => _character;
     public EnemyConfig Config => _config;
     public Transform Target => _character.transform;
+    public Transform ProjectileSpawnPoint => _projectileSpawnPoint;
 
     public bool IsDie => _isDie;
     public int Damage => _config.Damage;
@@ -53,6 +56,7 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
         _originFactory = factory;
         _isDie = false;
         _currentHp = _config.Health;
+
     }
 
     private void Awake()
@@ -76,6 +80,8 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     {
         HandleContactDamage(collision);
     }
+
+
     public void TakeDamage(int damage)
     {
         if (IsDie || damage <= 0) return;
@@ -98,11 +104,13 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     {
         if (IsDie || _character == null) return;
 
-        Vector2 direction = (Target.position - transform.position).normalized;
+        Vector3 spawnPosition = _projectileSpawnPoint != null ? _projectileSpawnPoint.position : transform.position;
+
+        Vector2 direction = (Target.position - spawnPosition).normalized;
         Projectile prefabComponent = _config.ProjectilePrefab.GetComponent<Projectile>();
         Projectile projectile = _originFactory.Get<Projectile>(prefabComponent);
 
-        projectile.transform.position = transform.position;
+        projectile.transform.position = spawnPosition;
         projectile.SetPoolData(prefabComponent, _originFactory);
 
         float randomAngle = Random.Range(-_config.Spread, _config.Spread);

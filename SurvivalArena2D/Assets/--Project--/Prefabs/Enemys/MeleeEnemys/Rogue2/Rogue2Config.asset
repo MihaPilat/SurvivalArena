@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb57dd8ec07e3d499971e8b23fd1f2a, type: 3}
+  m_Name: Rogue2Config
+  m_EditorClassIdentifier: 
+  Health: 50
+  Speed: 1
+  StopDistance: 1
+  WaitingTime: 1
+  ContactDamage: 5
+  ExpAmount: 10
+  MinAttackRange: 5
+  MaxAttackRange: 8
+  AttackCooldown: 5
+  Spread: 2
+  ProjectileSpeed: 12
+  ProjectileLifetime: 3
+  ProjectilePrefab: {fileID: 0}
+  Damage: 5
+  MagicRadius: 1.5
