@@ -61,6 +61,8 @@ public class EnemyView : MonoBehaviour
         if (_enemyEntity == null || _enemyEntity.IsDie)
             return;
 
+        float flipThreshold = 0.4f;
+
         bool isIdle = _agent != null && _agent.enabled && _agent.desiredVelocity.sqrMagnitude > 0.01f;
 
         if (isIdle)
@@ -70,7 +72,7 @@ public class EnemyView : MonoBehaviour
         else if (_enemyEntity != null && _enemyEntity.Target != null)
         {
             float directionToTarget = _enemyEntity.Target.position.x - transform.position.x;
-            if (Mathf.Abs(directionToTarget) > 0.1f)
+            if (Mathf.Abs(directionToTarget) > flipThreshold)
             {
                 Flip(directionToTarget);
             }
