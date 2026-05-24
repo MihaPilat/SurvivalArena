@@ -15,9 +15,9 @@ TagManager:
   - Weapon
   - Enemy
   - Ground
-  - 
-  - 
-  - 
+  - Minimap_Static
+  - Minimap_Player
+  - Minimap_Items
   - 
   - 
   - 
