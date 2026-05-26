@@ -11,27 +11,34 @@ public class EnemyView : MonoBehaviour
     private const string AttackTrigger = "Attack";
 
     [SerializeField] private Color _hitColor = new Color(1f, 0f, 0f, 0.7f);
-    [SerializeField] private float _hitDuration = 0.5f;
+    [SerializeField] private float _hitDuration = 0.2f;
 
     private Animator _animator;
-    private SpriteRenderer _spriteRenderer;
     private NavMeshAgent _agent;
     private EnemyEntity _enemyEntity;
 
+    private SpriteRenderer[] _childRenderers;
+    private Color[] _originalColors;
+
     private float _initialScaleX;
-    private Color _originalColor;
     private Coroutine _hitEffectCoroutine;
 
 
     void Awake()
     {
         _animator = GetComponent<Animator>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
         _enemyEntity = GetComponentInParent<EnemyEntity>();
         _agent = GetComponentInParent<NavMeshAgent>();
 
         _initialScaleX = transform.localScale.x;
-        _originalColor = _spriteRenderer.color;
+
+        _childRenderers = GetComponentsInChildren<SpriteRenderer>();
+
+        _originalColors = new Color[_childRenderers.Length];
+        for (int i = 0; i < _childRenderers.Length; i++)
+        {
+            _originalColors[i] = _childRenderers[i].color;
+        }
     }
     private void OnEnable()
     {
@@ -41,7 +48,7 @@ public class EnemyView : MonoBehaviour
             _enemyEntity.OnHit += PlayHitEffect;
             _enemyEntity.OnAttack += PlayAttackAnimation;
         }
-        _spriteRenderer.color = _originalColor;
+        ResetToOriginalColors();
     }
 
     private void OnDisable()
@@ -115,8 +122,9 @@ public class EnemyView : MonoBehaviour
         if (_hitEffectCoroutine != null)
         {
             StopCoroutine(_hitEffectCoroutine);
-            _spriteRenderer.color = _originalColor;
+            _hitEffectCoroutine = null;
         }
+        ResetToOriginalColors();
     }
     private void PlayHitEffect()
     {
@@ -125,13 +133,33 @@ public class EnemyView : MonoBehaviour
 
         _hitEffectCoroutine = StartCoroutine(HitFlashRoutine());
     }
+
     private IEnumerator HitFlashRoutine()
     {
-        _spriteRenderer.color = _hitColor;
+        SetAllRenderersColor(_hitColor);
 
         yield return new WaitForSeconds(_hitDuration);
 
-        _spriteRenderer.color = _originalColor;
+        ResetToOriginalColors();
         _hitEffectCoroutine = null;
+    }
+    private void SetAllRenderersColor(Color color)
+    {
+        for (int i = 0; i < _childRenderers.Length; i++)
+        {
+            if (_childRenderers[i] != null)
+                _childRenderers[i].color = color;
+        }
+    }
+
+    private void ResetToOriginalColors()
+    {
+        if (_childRenderers == null) return;
+
+        for (int i = 0; i < _childRenderers.Length; i++)
+        {
+            if (_childRenderers[i] != null)
+                _childRenderers[i].color = _originalColors[i];
+        }
     }
 }
