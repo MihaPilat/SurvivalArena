@@ -69,7 +69,7 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
         _agent.speed = _config.Speed;
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
-
+        _agent.avoidancePriority = Random.Range(30, 60);
         _currentHp = _config.Health;
     }
     private void Update()
