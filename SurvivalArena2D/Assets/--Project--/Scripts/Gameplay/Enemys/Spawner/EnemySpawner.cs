@@ -34,6 +34,11 @@ public class EnemySpawner : MonoBehaviour, IWaveHandler
         _characterTransform = character.transform;
         _enemyFactory = enemyFactory;
     }
+
+    private void Start()
+    {
+        PreWarmPools();
+    }
     void Update()
     {
         _dangerTimer += Time.deltaTime;
@@ -54,6 +59,37 @@ public class EnemySpawner : MonoBehaviour, IWaveHandler
             SpawnBatch();
         }
     }
+
+    private void PreWarmPools()
+    {
+        if (_allEnemies == null || _allEnemies.Count == 0)
+            return;
+
+
+        foreach (var enemyData in _allEnemies)
+        {
+            if (enemyData.Prefab == null) continue;
+
+            EnemyEntity prefabComponent = enemyData.Prefab.GetComponent<EnemyEntity>();
+            if (prefabComponent == null) continue;
+
+            EnemyEntity temporaryEnemy = _enemyFactory.Get<EnemyEntity>(prefabComponent);
+
+            _enemyFactory.Reclaim(temporaryEnemy, prefabComponent);
+
+            if (prefabComponent.Config != null && prefabComponent.Config.ProjectilePrefab != null)
+            {
+                Projectile projectilePrefab = prefabComponent.Config.ProjectilePrefab.GetComponent<Projectile>();
+                if (projectilePrefab != null)
+                {
+                    Projectile temporaryProjectile = _enemyFactory.Get<Projectile>(projectilePrefab);
+
+                    _enemyFactory.Reclaim(temporaryProjectile, projectilePrefab);
+                }
+            }
+        }
+    }
+
     private void SpawnBatch()
     {
         int cheapestCost = GetCheapestEnemyCost();

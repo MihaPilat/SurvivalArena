@@ -8,7 +8,6 @@ public class GameInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
-        BindProjectileFactory();
         BindLevelSystem();
         BindUpgrades();
         BindTimerService();
@@ -32,10 +31,5 @@ public class GameInstaller : MonoInstaller
     private void BindLevelSystem()
     {
         Container.Bind<ILevelable>().To<LevelSystem>().AsSingle().NonLazy();
-    }
-
-    private void BindProjectileFactory()
-    {
-        Container.Bind<ProjectileFactory>().AsSingle().NonLazy();
     }
 }
