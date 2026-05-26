@@ -183882,8 +183882,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 45a9e0b6473efab40b860a90326145d8, type: 2}
   _spawnInterval: 5
   _budgetGenerationRate: 10
-  _minSpawnRadius: 15
-  _maxSpawnRadius: 20
+  _minSpawnRadius: 5
+  _maxSpawnRadius: 10
 --- !u!1001 &1862801727
 PrefabInstance:
   m_ObjectHideFlags: 0

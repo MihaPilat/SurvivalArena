@@ -119,6 +119,18 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
         projectile.Init(spreadDirection, _config, Damage);
     }
 
+    public void TeleportTo(Vector3 position)
+    {
+        if (_agent != null)
+        {
+            _agent.Warp(position);
+        }
+        else
+        {
+            transform.position = position;
+        }
+    }
+
     protected abstract List<IState> AddStates();
     private void HandleContactDamage(Collider2D other)
     {

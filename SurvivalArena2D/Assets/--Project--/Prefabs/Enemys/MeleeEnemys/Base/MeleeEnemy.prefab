@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitColor: {r: 1, g: 0, b: 0, a: 0.7}
-  _hitDuration: 0.5
+  _hitDuration: 0.2
 --- !u!95 &334800359635665749
 Animator:
   serializedVersion: 5

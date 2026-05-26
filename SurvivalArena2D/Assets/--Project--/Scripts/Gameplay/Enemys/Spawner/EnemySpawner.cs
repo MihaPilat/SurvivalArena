@@ -113,8 +113,10 @@ public class EnemySpawner : MonoBehaviour, IWaveHandler
 
         EnemyEntity prefabComponent = enemyData.Prefab.GetComponent<EnemyEntity>();
         EnemyEntity enemy = _enemyFactory.Get<EnemyEntity>(prefabComponent);
+
         enemy.Init(prefabComponent, _enemyFactory);
-        enemy.transform.position = GetRandomSpawnPoint();
+
+        enemy.TeleportTo(GetRandomSpawnPoint());
 
         _spawnBudget -= enemyData.Cost;
         return true;
