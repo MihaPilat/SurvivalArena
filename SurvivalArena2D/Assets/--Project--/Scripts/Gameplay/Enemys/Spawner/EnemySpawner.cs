@@ -45,6 +45,7 @@ public class EnemySpawner : MonoBehaviour, IWaveHandler
     private void Start()
     {
         PreWarmPools();
+        _spawnBudget = _startDelayTimer * (_budgetGenerationRate * _currentDangerLevel);
     }
     void Update()
     {
