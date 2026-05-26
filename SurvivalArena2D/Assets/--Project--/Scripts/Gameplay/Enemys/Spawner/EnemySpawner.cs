@@ -18,6 +18,8 @@ public class EnemySpawner : MonoBehaviour, IWaveHandler
     [SerializeField] private float _minSpawnRadius = 10f;
     [SerializeField] private float _maxSpawnRadius = 20f;
 
+    [SerializeField] private int _maxEnemiesOnMap = 70;
+
     private Transform _characterTransform;
 
     private float _dangerTimer;
@@ -25,6 +27,7 @@ public class EnemySpawner : MonoBehaviour, IWaveHandler
     private int _currentDangerLevel = 1;
     private float _spawnBudget;
     private int _currentWave = 0;
+    private int _currentEnemiesCount = 0;
 
     private PoolFactory _enemyFactory;
 
@@ -95,7 +98,7 @@ public class EnemySpawner : MonoBehaviour, IWaveHandler
         int cheapestCost = GetCheapestEnemyCost();
 
         int safetyBreak = 0;
-        while (_spawnBudget >= cheapestCost && safetyBreak < 50)
+        while (_spawnBudget >= cheapestCost && _currentEnemiesCount < _maxEnemiesOnMap && safetyBreak < 50)
         {
             if (!TrySpawnEnemy()) break;
             safetyBreak++;
@@ -118,8 +121,19 @@ public class EnemySpawner : MonoBehaviour, IWaveHandler
 
         enemy.TeleportTo(GetRandomSpawnPoint());
 
+        _currentEnemiesCount++;
+        enemy.OnDied += OnEnemyDestroyed;
+
         _spawnBudget -= enemyData.Cost;
         return true;
+    }
+
+    private void OnEnemyDestroyed()
+    {
+        _currentEnemiesCount--;
+
+        if (_currentEnemiesCount < 0)
+            _currentEnemiesCount = 0;
     }
 
     private int GetCheapestEnemyCost() => _allEnemies?.Min(e => e.Cost) ?? 0;

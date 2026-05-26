@@ -152,6 +152,8 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
         _isDie = true;
         OnDied?.Invoke();
 
+        OnDied = null;
+
         StartCoroutine(DeathCoroutine());
     }
 
