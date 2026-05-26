@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 public class EnemySpawner : MonoBehaviour, IWaveHandler
 {
     public event Action<int> OnWaveStarted;
+    public event Action<float> OnPreWaveCountdown;
 
     [SerializeField] private List<EnemySpawnData> _allEnemies;
 
@@ -29,6 +30,9 @@ public class EnemySpawner : MonoBehaviour, IWaveHandler
     private int _currentWave = 0;
     private int _currentEnemiesCount = 0;
 
+    private bool _firstWaveStarted = false;
+    private float _startDelayTimer = 5f;
+
     private PoolFactory _enemyFactory;
 
     [Inject]
@@ -44,6 +48,22 @@ public class EnemySpawner : MonoBehaviour, IWaveHandler
     }
     void Update()
     {
+        if (!_firstWaveStarted)
+        {
+            _startDelayTimer -= Time.deltaTime;
+
+            OnPreWaveCountdown?.Invoke(_startDelayTimer);
+
+            if (_startDelayTimer <= 0)
+            {
+                _firstWaveStarted = true;
+                _currentWave = 1;
+                OnWaveStarted?.Invoke(_currentWave);
+                SpawnBatch();
+            }
+            return;
+        }
+
         _dangerTimer += Time.deltaTime;
         if (_dangerTimer >= 60f)
         {
