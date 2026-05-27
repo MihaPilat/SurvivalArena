@@ -7,8 +7,6 @@ public class GameStartControllerInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<PoolFactory>().AsSingle();
-
         Container.BindInstance(_explosionEffectPrefab).AsSingle();
 
         Container.BindInterfacesTo<GameStartController>().AsSingle().NonLazy();

@@ -23,4 +23,9 @@ MonoBehaviour:
   ProjectileSpeed: 12
   ProjectileLifetime: 3
   RotateToTarget: 0
+  ExtraProjectiles: 1
   MagicRadius: 1.5
+  ExplosionRadiusIncreasePerUpgrade: 1
+  MagicColor: {r: 1, g: 0, b: 0, a: 1}
+  MaxSpecialUpgrades: 3
+  ScaleMultiplier: 1.2

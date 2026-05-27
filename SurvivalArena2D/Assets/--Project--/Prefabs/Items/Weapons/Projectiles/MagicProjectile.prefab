@@ -112,6 +112,8 @@ MonoBehaviour:
   _targetLayer:
     serializedVersion: 2
     m_Bits: 256
+  _health: 1
+  _explosionEffectPrefab: {fileID: 4393062876895238956, guid: 4085a0eb86ebbc548a062dcfe35c0ad7, type: 3}
 --- !u!1 &8769088478639356075
 GameObject:
   m_ObjectHideFlags: 0

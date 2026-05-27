@@ -99496,6 +99496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13942917d78ec0b4aac6adf914c0fa69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _explosionEffectPrefab: {fileID: 4393062876895238956, guid: 4085a0eb86ebbc548a062dcfe35c0ad7, type: 3}
 --- !u!4 &1114999094
 Transform:
   m_ObjectHideFlags: 0
