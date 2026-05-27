@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyConfig", menuName = "Game/EnemyConfig")]
+[CreateAssetMenu(fileName = "EnemyConfig", menuName = "Configs/EnemyConfig")]
 public class EnemyConfig : ScriptableObject
 {
     public float Health = 100f;
