@@ -99497,6 +99497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _explosionEffectPrefab: {fileID: 4393062876895238956, guid: 4085a0eb86ebbc548a062dcfe35c0ad7, type: 3}
+  _stepDustEffect: {fileID: 8450393439388160669, guid: 38a97ec53372d754abe9900087a09a4d, type: 3}
 --- !u!4 &1114999094
 Transform:
   m_ObjectHideFlags: 0

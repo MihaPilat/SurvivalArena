@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using Zenject;
 
 [RequireComponent(typeof(Animator))]
 public class CharacterView : MonoBehaviour
@@ -8,9 +8,21 @@ public class CharacterView : MonoBehaviour
     private static readonly int HitHash = Animator.StringToHash("Hit");
     private static readonly int IsDeadHash = Animator.StringToHash("IsDead");
 
+    [SerializeField] private StepDustEffect _dustPrefab;
+    [SerializeField] private Transform _dustSpawnPoint;
+
     private Character _character;
 
+    private PoolFactory _poolFactory;
+
     private Animator _animator;
+
+    [Inject]
+    public void Construct(PoolFactory poolFactory)
+    {
+        _poolFactory = poolFactory;
+    }
+
     private void Awake()
     {
         _character = GetComponentInParent<Character>();
@@ -50,7 +62,19 @@ public class CharacterView : MonoBehaviour
 
     private void PlayDeathAnimation() => _animator.SetBool(IsDeadHash, true);
 
-        private void Flip()
+    public void TriggerStepDust()
+    {
+        if (_dustPrefab == null || _poolFactory == null) return;
+
+        StepDustEffect dustInstance = _poolFactory.Get(_dustPrefab);
+
+        dustInstance.SetPoolData(_dustPrefab, _poolFactory);
+
+        Vector3 spawnPosition = _dustSpawnPoint != null ? _dustSpawnPoint.position : transform.position;
+        dustInstance.PlayAt(spawnPosition);
+    }
+
+    private void Flip()
     {
         float dirX = _character.AimDirection.x;
 
