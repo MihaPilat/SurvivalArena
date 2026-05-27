@@ -11,7 +11,7 @@ public abstract class Projectile : MonoBehaviour, IProjectile, IDamageable
     protected int _damage;
     private int _currentHealth;
 
-    private PoolFactory _poolFactory;
+    protected PoolFactory _poolFactory;
     private Projectile _originPrefab;
     private Coroutine _lifeTimeCoroutine;
     private bool _isDestroyed;

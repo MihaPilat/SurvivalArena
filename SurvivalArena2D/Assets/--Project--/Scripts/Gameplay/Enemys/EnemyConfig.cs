@@ -22,4 +22,5 @@ public class EnemyConfig : ScriptableObject
 
     [Header("Magic")]
     public float MagicRadius = 1.5f;
+    public Color MagicColor = Color.green;
 }

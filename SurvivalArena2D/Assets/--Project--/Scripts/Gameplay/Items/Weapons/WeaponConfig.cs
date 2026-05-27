@@ -33,4 +33,5 @@ public class WeaponConfig : ScriptableObject
 
     [Header("Magic")]
     public float ExplosionRadiusIncreasePerUpgrade = 1f;
+    public Color MagicColor = Color.red;
 }
