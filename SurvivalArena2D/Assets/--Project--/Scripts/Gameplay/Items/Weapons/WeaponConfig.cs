@@ -17,21 +17,16 @@ public class WeaponConfig : ScriptableObject
     public float ProjectileSpeed=12f;
     public float ProjectileLifetime = 3f;
     public bool RotateToTarget=true;
+    public int ExtraProjectiles = 1;
 
     [Header("Magic")]
     public float MagicRadius = 1.5f;
+    public float ExplosionRadiusIncreasePerUpgrade = 1f;
+    public Color MagicColor = Color.red;
 
     [Header("Special Upgrade Settings")]
     public int MaxSpecialUpgrades = 3;
 
     [Header("Melee")]
     public float ScaleMultiplier = 1.2f;
-
-    [Header("Ranged")]
-
-    public int ExtraProjectiles = 1;
-
-    [Header("Magic")]
-    public float ExplosionRadiusIncreasePerUpgrade = 1f;
-    public Color MagicColor = Color.red;
 }

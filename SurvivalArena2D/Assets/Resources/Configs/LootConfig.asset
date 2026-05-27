@@ -15,6 +15,6 @@ MonoBehaviour:
   SpecialEvents:
   - TargetWave: 2
     PrefabToSpawn: {fileID: 7297383671919931362, guid: 074dbe9779d722b4fb308c7c93a48488, type: 3}
-  - TargetWave: 10
+  - TargetWave: 1
     PrefabToSpawn: {fileID: 4882390879427794155, guid: acb2e5476401f5c49852f4c2f6afb8c6, type: 3}
   DefaultPickupPrefab: {fileID: 7886973500918249360, guid: cc10b6e6bb3fe3648a1ea868c7e32302, type: 3}
