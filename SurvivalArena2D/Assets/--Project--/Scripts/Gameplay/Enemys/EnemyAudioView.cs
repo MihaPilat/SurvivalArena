@@ -1,7 +1,6 @@
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(EnemyEntity))]
 public class EnemyAudioView : MonoBehaviour
 {
     [Header("Audio Data")]
@@ -20,7 +19,7 @@ public class EnemyAudioView : MonoBehaviour
 
     private void Awake()
     {
-        _enemy = GetComponent<EnemyEntity>();
+        _enemy = GetComponentInParent<EnemyEntity>();
 
         _enemy.OnSpawned += SubscribeToGameplayEvents;
     }
