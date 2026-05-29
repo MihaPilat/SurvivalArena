@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class MagicProjectile : Projectile
 {
+    public event Action OnExploded;
+
     [SerializeField] private ExplosionEffect _explosionEffectPrefab;
 
     private float _explosionRadius;
@@ -33,6 +36,7 @@ public class MagicProjectile : Projectile
 
     private void Explode()
     {
+        OnExploded?.Invoke();
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, _explosionRadius, _targetLayer);
 
         foreach (var hit in hits)
@@ -51,6 +55,12 @@ public class MagicProjectile : Projectile
 
         ReturnToPool();
     }
+
+    private void OnDisable()
+    {
+        OnExploded = null;
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.black;
