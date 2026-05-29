@@ -47,7 +47,7 @@ MonoBehaviour:
   _swordSoundData:
     _clip: {fileID: 8300000, guid: 1c8a79785851b544184b0817734ba5ad, type: 3}
     _volume: 1
-    _minPitch: 0.5
+    _minPitch: 0.8
     _maxPitch: 1.5
 --- !u!1 &4282131780650861541
 GameObject:
