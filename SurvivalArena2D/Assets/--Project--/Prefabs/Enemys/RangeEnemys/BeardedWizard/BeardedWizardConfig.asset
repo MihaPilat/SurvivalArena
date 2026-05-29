@@ -18,8 +18,8 @@ MonoBehaviour:
   WaitingTime: 1
   ContactDamage: 5
   ExpAmount: 20
-  MinAttackRange: 5
-  MaxAttackRange: 8
+  MinAttackRange: 7
+  MaxAttackRange: 12
   AttackCooldown: 8
   Spread: 2
   ProjectileSpeed: 6
@@ -27,3 +27,4 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 1170835258638870793, guid: 5bbf69f29bb12744899bf1f11e042aed, type: 3}
   Damage: 5
   MagicRadius: 1.5
+  MagicColor: {r: 0, g: 1, b: 0, a: 1}
