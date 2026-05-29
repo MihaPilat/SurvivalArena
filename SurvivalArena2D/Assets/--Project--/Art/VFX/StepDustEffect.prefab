@@ -4901,3 +4901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2506af8dbca919d49b9e7629461f66b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stepSoundData:
+    _clip: {fileID: 8300000, guid: 454e602f6d49cf04395d92b59a5e3c29, type: 3}
+    _volume: 1
+    _minPitch: 0.8
+    _maxPitch: 2

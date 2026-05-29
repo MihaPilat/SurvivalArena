@@ -1,5 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2741635684659324795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5281405739710006423}
+  - component: {fileID: 120786036595174835}
+  m_Layer: 0
+  m_Name: WeaponAudioView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5281405739710006423
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2741635684659324795}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 291313008476003064}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &120786036595174835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2741635684659324795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ee00c3cb2819340ac4f1c5340afb5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _swordSoundData:
+    _clip: {fileID: 8300000, guid: 1c8a79785851b544184b0817734ba5ad, type: 3}
+    _volume: 1
+    _minPitch: 0.5
+    _maxPitch: 1.5
 --- !u!1 &4282131780650861541
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 980c2983336e2a1499b29cae9456c871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponSource: {fileID: 1647318827495149943}
 --- !u!1 &5608088288709735209
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +198,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5281405739710006423}
   - {fileID: 5057498106408404192}
   - {fileID: 4884848813597377250}
   m_Father: {fileID: 0}

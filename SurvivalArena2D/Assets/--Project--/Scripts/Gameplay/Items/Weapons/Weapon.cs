@@ -1,14 +1,12 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 public abstract class Weapon : MonoBehaviour, IWeapon
 {
     public event Action OnAttack;
 
     [SerializeField] protected WeaponConfig _config;
-
-
-    public Sprite Icon => _config.Icon;
 
     private int _specialUpgradeLevel = 0;
 
@@ -21,9 +19,11 @@ public abstract class Weapon : MonoBehaviour, IWeapon
     private int _maxAttackSpeedUpgrades;
     private int _currentAttackSpeedUpgrades;
 
+    public Sprite Icon => _config.Icon;
     public WeaponType Type => _config.Type;
     public WeaponConfig Config => _config;
     public int Damage => _currentDamage;
+
 
     private void Awake()
     {
