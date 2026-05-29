@@ -13,6 +13,7 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     public event Action OnDied;
     public event Action OnAttack;
     public event Action OnSpawned;
+    public event Action OnRangeAttackPerformed;
 
     [SerializeField] private EnemyConfig _config;
     [SerializeField] private EnemyView _enemyView;
@@ -119,6 +120,8 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
         Vector2 spreadDirection = Quaternion.Euler(0, 0, randomAngle) * direction;
 
         projectile.Init(spreadDirection, _config, Damage);
+
+        OnRangeAttackPerformed?.Invoke();
     }
 
     public void TeleportTo(Vector3 position)
