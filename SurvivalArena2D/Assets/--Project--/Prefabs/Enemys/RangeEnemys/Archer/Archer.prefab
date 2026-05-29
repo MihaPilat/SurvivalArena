@@ -32,6 +32,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.018
       objectReference: {fileID: 0}
+    - target: {fileID: 4778896724662962161, guid: dfa345d09b4c60040828c676e2d31752, type: 3}
+      propertyPath: _attackSound._clip
+      value: 
+      objectReference: {fileID: 8300000, guid: d4d44a5897ff7414cbc1f1b32a05ec03, type: 3}
     - target: {fileID: 5360802143495552542, guid: dfa345d09b4c60040828c676e2d31752, type: 3}
       propertyPath: m_Name
       value: Archer

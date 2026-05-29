@@ -38,14 +38,14 @@ public class EnemyAudioView : MonoBehaviour
     {
         UnsubscribeFromGameplayEvents();
 
-        _enemy.OnAttack += PlayAttackSound;
+        _enemy.OnRangeAttackPerformed += PlayAttackSound;
         _enemy.OnHit += PlayHitSound;
         _enemy.OnDied += PlayDieSound;
     }
 
     private void UnsubscribeFromGameplayEvents()
     {
-        _enemy.OnAttack -= PlayAttackSound;
+        _enemy.OnRangeAttackPerformed -= PlayAttackSound;
         _enemy.OnHit -= PlayHitSound;
         _enemy.OnDied -= PlayDieSound;
     }
@@ -56,6 +56,7 @@ public class EnemyAudioView : MonoBehaviour
 
     private void PlayHitSound()
     {
+        Debug.Log("PlayHitSound()");
         _audioService.Play3DSound(_hitSound, transform.position);
     }
 
