@@ -10,6 +10,10 @@ public class AudioService
 
     private readonly Queue<PooledAudioSource> _pool = new Queue<PooledAudioSource>();
 
+    private readonly Dictionary<AudioClip, float> _soundCooldowns = new Dictionary<AudioClip, float>();
+
+    private const float MinSoundInterval = 0.1f;
+
     private readonly AudioMixerGroup _sfxGroup;
     private readonly AudioMixerGroup _musicGroup;
 
@@ -44,6 +48,8 @@ public class AudioService
     {
         if (soundData.Clip == null) return;
 
+        if (!CanPlaySound(soundData.Clip)) return;
+
         PooledAudioSource source = GetSourceFromPool();
         source.Play(soundData, position, _sfxGroup, ReturnToPool, is2D: false);
     }
@@ -51,6 +57,8 @@ public class AudioService
     public void Play2DSound(SoundData soundData)
     {
         if (soundData.Clip == null) return;
+
+        if (!CanPlaySound(soundData.Clip)) return;
 
         PooledAudioSource source = GetSourceFromPool();
         source.Play(soundData, Vector3.zero, _sfxGroup, ReturnToPool, is2D: true);
@@ -63,6 +71,20 @@ public class AudioService
         _musicSource.clip = soundData.Clip;
         _musicSource.volume = soundData.Volume;
         _musicSource.Play();
+    }
+
+    private bool CanPlaySound(AudioClip clip)
+    {
+        if (_soundCooldowns.TryGetValue(clip, out float lastPlayTime))
+        {
+            if (Time.time - lastPlayTime < MinSoundInterval)
+            {
+                return false;
+            }
+        }
+
+        _soundCooldowns[clip] = Time.time;
+        return true;
     }
 
     private PooledAudioSource GetSourceFromPool()

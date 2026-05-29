@@ -12,6 +12,7 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
     public event Action OnHit;
     public event Action OnDied;
     public event Action OnAttack;
+    public event Action OnSpawned;
 
     [SerializeField] private EnemyConfig _config;
     [SerializeField] private EnemyView _enemyView;
@@ -57,6 +58,7 @@ public abstract class EnemyEntity : MonoBehaviour, IDamageable
         _isDie = false;
         _currentHp = _config.Health;
 
+        OnSpawned?.Invoke();
     }
 
     private void Awake()
