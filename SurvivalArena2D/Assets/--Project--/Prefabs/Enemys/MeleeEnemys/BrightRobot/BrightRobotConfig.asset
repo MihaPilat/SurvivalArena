@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb57dd8ec07e3d499971e8b23fd1f2a, type: 3}
   m_Name: BrightRobotConfig
   m_EditorClassIdentifier: 
-  Health: 4
+  Health: 40
   Speed: 2
   StopDistance: 1
   WaitingTime: 1
@@ -27,3 +27,4 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 0}
   Damage: 5
   MagicRadius: 1.5
+  MagicColor: {r: 0, g: 1, b: 0, a: 1}

@@ -2253,6 +2253,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goblin
       objectReference: {fileID: 0}
+    - target: {fileID: 3309387582598149496, guid: 809087524f7d1474db80e4ff410120fe, type: 3}
+      propertyPath: _dieSound._clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5d10b3c4602cf344c98ccbb991fe96f5, type: 3}
+    - target: {fileID: 3309387582598149496, guid: 809087524f7d1474db80e4ff410120fe, type: 3}
+      propertyPath: _hitSound._clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0d08d11f26d20234892a17e29b4caf08, type: 3}
     - target: {fileID: 3439770549236515316, guid: 809087524f7d1474db80e4ff410120fe, type: 3}
       propertyPath: _config
       value: 

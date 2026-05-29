@@ -2837,6 +2837,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 3309387582598149496, guid: 809087524f7d1474db80e4ff410120fe, type: 3}
+      propertyPath: _dieSound._clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c57e8716ca7e114aad6541315bd9672, type: 3}
+    - target: {fileID: 3309387582598149496, guid: 809087524f7d1474db80e4ff410120fe, type: 3}
+      propertyPath: _hitSound._clip
+      value: 
+      objectReference: {fileID: 8300000, guid: fafbd2ac3d5e52047943ea39baeeb13c, type: 3}
     - target: {fileID: 3439770549236515316, guid: 809087524f7d1474db80e4ff410120fe, type: 3}
       propertyPath: _config
       value: 
