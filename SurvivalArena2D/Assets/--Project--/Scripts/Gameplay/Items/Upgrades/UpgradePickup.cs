@@ -1,14 +1,20 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
-public class UpgradePickup : MonoBehaviour
+public class UpgradePickup : MonoBehaviour, IPickup
 {
+    public event Action OnPickedUp;
+
     [SerializeField] private SpriteRenderer _frameRenderer;
     [SerializeField] private SpriteRenderer _iconRenderer;
     [SerializeField] private float _maxIconSize = 0.9f;
 
+
     private UpgradeData _data;
     private bool _isPickedUp;
+
+
     public void Setup(UpgradeData newData)
     {
         _data = newData;
@@ -32,6 +38,7 @@ public class UpgradePickup : MonoBehaviour
         {
             _isPickedUp = true;
             _data.Apply(character);
+            OnPickedUp?.Invoke();
             PlayCollectAnimation();
         }
     }

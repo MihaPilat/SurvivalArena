@@ -1,5 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3299630809233208280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3644506096355403113}
+  - component: {fileID: 3439264605053711150}
+  m_Layer: 0
+  m_Name: PickupAudioView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3644506096355403113
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299630809233208280}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5503019659129848691}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3439264605053711150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299630809233208280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab90f9743b63bef45b06a359952ed76b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pickupSound:
+    _clip: {fileID: 8300000, guid: 0b7b796699bdf1640bf42a80e18b4566, type: 3}
+    _volume: 0.5
+    _minPitch: 1
+    _maxPitch: 1
 --- !u!1 &4882390879427794155
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,9 +58,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5503019659129848691}
-  - component: {fileID: 614613503981131662}
   - component: {fileID: 228004103516775691}
   - component: {fileID: 1809454601427895701}
+  - component: {fileID: 614613503981131662}
   m_Layer: 0
   m_Name: MagicStaffPickup
   m_TagString: Untagged
@@ -33,21 +82,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8648648923303919624}
+  - {fileID: 3644506096355403113}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &614613503981131662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4882390879427794155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5d37dc4db07a5f468ab52e0519990e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponPrefab: {fileID: 5608088288709735209, guid: 1feca9188ded903458e22e67cca8ab7f, type: 3}
 --- !u!212 &228004103516775691
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -145,6 +182,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6123352, y: 1.3940003}
   m_EdgeRadius: 0
+--- !u!114 &614613503981131662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4882390879427794155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d37dc4db07a5f468ab52e0519990e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponPrefab: {fileID: 5608088288709735209, guid: 1feca9188ded903458e22e67cca8ab7f, type: 3}
 --- !u!1001 &2600906595104184549
 PrefabInstance:
   m_ObjectHideFlags: 0
