@@ -12060,6 +12060,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305717841}
   m_CullTransparentMesh: 1
+--- !u!1 &306857567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 306857568}
+  - component: {fileID: 306857569}
+  m_Layer: 5
+  m_Name: UpgradeCardAudioView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &306857568
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306857567}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1392026084}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -333.17755, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &306857569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306857567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70e98380dd0161f408f50ab0dd91c9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickSound:
+    _clip: {fileID: 8300000, guid: 2789964c2450d59479c99c97fd5dbf6c, type: 3}
+    _volume: 0.5
+    _minPitch: 1
+    _maxPitch: 1
 --- !u!1001 &307282523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14152,6 +14205,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2175140976208796937, guid: 4d15b157669f2ad49bf96b2997a4c57e, type: 3}
   m_PrefabInstance: {fileID: 372516793}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &373938716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 373938717}
+  - component: {fileID: 373938718}
+  m_Layer: 5
+  m_Name: UpgradeCardAudioView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &373938717
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373938716}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1851967285}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &373938718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373938716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70e98380dd0161f408f50ab0dd91c9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickSound:
+    _clip: {fileID: 8300000, guid: 2789964c2450d59479c99c97fd5dbf6c, type: 3}
+    _volume: 0.5
+    _minPitch: 1
+    _maxPitch: 1
 --- !u!1001 &378427397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21247,6 +21353,7 @@ RectTransform:
   - {fileID: 452300320}
   - {fileID: 1969945832}
   - {fileID: 885641568}
+  - {fileID: 1118541020}
   m_Father: {fileID: 1123720151}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -25604,6 +25711,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7592325533854355140, guid: ff97ddc0bf14ff44393ab719dff03963, type: 3}
   m_PrefabInstance: {fileID: 708456170}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &708496441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 708496442}
+  - component: {fileID: 708496443}
+  m_Layer: 5
+  m_Name: GameOverAudioView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &708496442
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708496441}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 738374230}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &708496443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708496441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63232af104ed51b42a3559b2cd067a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickSound:
+    _clip: {fileID: 8300000, guid: 19ab817f82c971f44a8941b621f364a3, type: 3}
+    _volume: 0.5
+    _minPitch: 1
+    _maxPitch: 1
 --- !u!1001 &710326184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27237,6 +27397,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1955614301}
+  - {fileID: 708496442}
   m_Father: {fileID: 1648903173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -32419,6 +32580,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2175140976208796937, guid: 825ab070850f6fc4fb22052f2cb954c2, type: 3}
   m_PrefabInstance: {fileID: 867141562}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &871466070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 871466071}
+  - component: {fileID: 871466072}
+  m_Layer: 5
+  m_Name: LevelUpAudioView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &871466071
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871466070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1344981931}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &871466072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871466070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a28d504d73f234685ba5a8797ef532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showSound:
+    _clip: {fileID: 8300000, guid: 5afe620d005747543b593b4b5521364c, type: 3}
+    _volume: 0.5
+    _minPitch: 1
+    _maxPitch: 1
 --- !u!1001 &872014573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -99686,6 +99900,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7592325533854355140, guid: c79c2235b32af2142ace5c0eca4a92ae, type: 3}
   m_PrefabInstance: {fileID: 1117608070}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1118541019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1118541020}
+  - component: {fileID: 1118541021}
+  m_Layer: 5
+  m_Name: UpgradeCardAudioView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1118541020
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118541019}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 602271467}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -666.3551, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1118541021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118541019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70e98380dd0161f408f50ab0dd91c9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickSound:
+    _clip: {fileID: 8300000, guid: 2789964c2450d59479c99c97fd5dbf6c, type: 3}
+    _volume: 0.5
+    _minPitch: 1
+    _maxPitch: 1
 --- !u!1001 &1118895495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138362,6 +138629,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 150032219}
+  - {fileID: 871466071}
   m_Father: {fileID: 1648903173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -140295,6 +140563,7 @@ RectTransform:
   - {fileID: 174444699}
   - {fileID: 939086070}
   - {fileID: 21668790}
+  - {fileID: 306857568}
   m_Father: {fileID: 1123720151}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -183579,6 +183848,7 @@ RectTransform:
   - {fileID: 300571473}
   - {fileID: 2111450588}
   - {fileID: 769017317}
+  - {fileID: 373938717}
   m_Father: {fileID: 1123720151}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}

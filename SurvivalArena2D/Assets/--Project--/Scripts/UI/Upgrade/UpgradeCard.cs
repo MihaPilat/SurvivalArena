@@ -1,13 +1,13 @@
 using DG.Tweening;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UpgradeCard : MonoBehaviour
 {
+    public event Action OnClicked;
+
     [SerializeField] private TextMeshProUGUI _titleText;
     [SerializeField] private TextMeshProUGUI _descriptionText;
     [SerializeField] private Image _iconImage;
@@ -36,6 +36,8 @@ public class UpgradeCard : MonoBehaviour
 
     private void HandleClick()
     {
+        OnClicked?.Invoke();
+
         _onSelected?.Invoke(_data);
     }
 }

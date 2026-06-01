@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Zenject;
+using System;
 using Random = UnityEngine.Random;
 
 public class LevelUpScreen : MonoBehaviour
 {
+    public event Action OnShow;
+
     [SerializeField] private GameObject _panel;
     [SerializeField] private RectTransform _panelRect;
     [SerializeField] private CanvasGroup _canvasGroup;
@@ -52,6 +55,8 @@ public class LevelUpScreen : MonoBehaviour
         _canvasGroup.interactable = true;
         _panel.SetActive(true);
         _pauseManager.SetPaused(true);
+
+        OnShow?.Invoke();
 
         SetupUpgrades();
 

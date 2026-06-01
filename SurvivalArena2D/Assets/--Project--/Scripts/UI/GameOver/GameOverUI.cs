@@ -8,6 +8,9 @@ using System;
 
 public class GameOverUI : MonoBehaviour
 {
+    public event Action OnRestartClicked;
+    public event Action OnBackToMenuClicked;
+
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private GameObject _panel;
     [SerializeField] private RectTransform _windowRect;
@@ -36,8 +39,15 @@ public class GameOverUI : MonoBehaviour
         _canvasGroup.interactable = false;
         _newRecordLabel.SetActive(false);
 
-        _restartButton.onClick.AddListener(() => OnButtonClicked(_restartButton, RestartGame));
-        _backToMenuButton.onClick.AddListener(() => OnButtonClicked(_backToMenuButton, BackToMenu));
+        _restartButton.onClick.AddListener(() => {
+            OnRestartClicked?.Invoke();
+            OnButtonClicked(_restartButton, RestartGame);
+        });
+
+        _backToMenuButton.onClick.AddListener(() => {
+            OnBackToMenuClicked?.Invoke();
+            OnButtonClicked(_backToMenuButton, BackToMenu);
+        });
 
         _character.OnDied += ShowGameOver;
     }
@@ -68,7 +78,7 @@ public class GameOverUI : MonoBehaviour
             _newRecordLabel.transform.DOPunchScale(Vector3.one * 0.2f, 0.5f).SetUpdate(true);
         }
 
-        _currentTimeText.text = $"Продержался: {_timerService.GetFormattedTime()}";
+        _currentTimeText.text = $"РџСЂРѕРґРµСЂР¶Р°Р»СЃСЏ: {_timerService.GetFormattedTime()}";
 
         _panel.gameObject.SetActive(true);
 
