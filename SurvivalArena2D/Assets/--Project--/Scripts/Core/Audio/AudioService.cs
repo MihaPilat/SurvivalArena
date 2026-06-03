@@ -7,12 +7,18 @@ public class AudioService
 {
     private readonly IInstantiator _instantiator;
     private readonly Transform _poolRoot;
+    private readonly AudioMixer _audioMixer;
 
     private readonly Queue<PooledAudioSource> _pool = new Queue<PooledAudioSource>();
 
     private readonly Dictionary<AudioClip, float> _soundCooldowns = new Dictionary<AudioClip, float>();
 
     private const float MinSoundInterval = 0.1f;
+
+    private const string MusicParam = "MusicVolume";
+    private const string SfxParam = "SFXVolume";
+    private const string MusicPrefsKey = "MusicVolumeValue";
+    private const string SfxPrefsKey = "SFXVolumeValue";
 
     private readonly AudioMixerGroup _sfxGroup;
     private readonly AudioMixerGroup _musicGroup;
@@ -22,6 +28,7 @@ public class AudioService
     public AudioService(IInstantiator instantiator, AudioMixer mixer, Context context)
     {
         _instantiator = instantiator;
+        _audioMixer = mixer;
 
         GameObject poolGO = new GameObject("--- AUDIO_POOL ---");
         _poolRoot = poolGO.transform;
@@ -32,16 +39,8 @@ public class AudioService
         _musicGroup = mixer.FindMatchingGroups("Music")[0];
 
         SetupMusicSource();
-    }
 
-    private void SetupMusicSource()
-    {
-        GameObject musicObj = new GameObject("Background_Music_Source");
-        musicObj.transform.SetParent(_poolRoot);
-        _musicSource = musicObj.AddComponent<AudioSource>();
-        _musicSource.outputAudioMixerGroup = _musicGroup;
-        _musicSource.loop = true;
-        _musicSource.spatialBlend = 0f;
+        InitializeVolumes();
     }
 
     public void Play3DSound(SoundData soundData, Vector3 position)
@@ -71,6 +70,47 @@ public class AudioService
         _musicSource.clip = soundData.Clip;
         _musicSource.volume = soundData.Volume;
         _musicSource.Play();
+    }
+
+    public float GetSavedVolume(string key)
+    {
+        return PlayerPrefs.GetFloat(key, 0.75f);
+    }
+
+    public void SetMusicVolume(float value)
+    {
+        float dbValue = Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20f;
+        _audioMixer.SetFloat(MusicParam, dbValue);
+        PlayerPrefs.SetFloat(MusicPrefsKey, value);
+    }
+
+    public void SetSFXVolume(float value)
+    {
+        float dbValue = Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20f;
+        _audioMixer.SetFloat(SfxParam, dbValue);
+        PlayerPrefs.SetFloat(SfxPrefsKey, value);
+    }
+    public void ResetToDefaultVolumes()
+    {
+        SetMusicVolume(0.75f);
+        SetSFXVolume(0.75f);
+
+        PlayerPrefs.Save();
+    }
+    private void InitializeVolumes()
+    {
+        SetMusicVolume(GetSavedVolume(MusicPrefsKey));
+        SetSFXVolume(GetSavedVolume(SfxPrefsKey));
+    }
+
+    private void SetupMusicSource()
+    {
+        GameObject musicObj = new GameObject("Background_Music_Source");
+        musicObj.transform.SetParent(_poolRoot);
+        _musicSource = musicObj.AddComponent<AudioSource>();
+        _musicSource.outputAudioMixerGroup = _musicGroup;
+        _musicSource.loop = true;
+        _musicSource.spatialBlend = 0f;
     }
 
     private bool CanPlaySound(AudioClip clip)

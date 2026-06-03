@@ -1,50 +1,38 @@
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
+using Zenject;
 
 public class AudioSettingsUI : MonoBehaviour
 {
-    [SerializeField] private AudioMixer _audioMixer;
-
     [SerializeField] private Slider _musicSlider;
     [SerializeField] private Slider _sfxSlider;
 
-    private const string MusicParam = "MusicVolume";
-    private const string SfxParam = "SFXVolume";
+    private AudioService _audioService;
 
+    [Inject]
+    public void Construct(AudioService audioService)
+    {
+        _audioService = audioService;
+    }
     private void Start()
     {
+        float savedMusic = _audioService.GetSavedVolume("MusicVolumeValue");
+        float savedSfx = _audioService.GetSavedVolume("SFXVolumeValue");
+
+        _musicSlider.SetValueWithoutNotify(savedMusic);
+        _sfxSlider.SetValueWithoutNotify(savedSfx);
+
         _musicSlider.onValueChanged.AddListener(SetMusicVolume);
         _sfxSlider.onValueChanged.AddListener(SetSFXVolume);
-
-        float savedMusic = PlayerPrefs.GetFloat("MusicVolumeValue", 0.75f);
-        float savedSfx = PlayerPrefs.GetFloat("SFXVolumeValue", 0.75f);
-
-        _musicSlider.value = savedMusic;
-        _sfxSlider.value = savedSfx;
     }
 
-    private void SetMusicVolume(float value)
-    {
-        float dbValue = Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20f;
+    private void SetMusicVolume(float value) => _audioService.SetMusicVolume(value);
 
-        _audioMixer.SetFloat(MusicParam, dbValue);
-
-        PlayerPrefs.SetFloat("MusicVolumeValue", value);
-    }
-
-    private void SetSFXVolume(float value)
-    {
-        float dbValue = Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20f;
-
-        _audioMixer.SetFloat(SfxParam, dbValue);
-
-        PlayerPrefs.SetFloat("SFXVolumeValue", value);
-    }
+    private void SetSFXVolume(float value) => _audioService.SetSFXVolume(value);
 
     private void OnDestroy()
     {
-        _musicSlider.onValueChanged.RemoveListener(SetMusicVolume);
-        _sfxSlider.onValueChanged.RemoveListener(SetSFXVolume);
+        if (_musicSlider != null) _musicSlider.onValueChanged.RemoveListener(SetMusicVolume);
+        if (_sfxSlider != null) _sfxSlider.onValueChanged.RemoveListener(SetSFXVolume);
     }
 }
