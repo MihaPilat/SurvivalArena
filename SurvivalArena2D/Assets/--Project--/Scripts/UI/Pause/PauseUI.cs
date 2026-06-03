@@ -96,6 +96,7 @@ public class PauseUI : MonoBehaviour
 
     private void ExitToMenu()
     {
+        _pauseManager.SetPaused(false);
         _sceneLoader.LoadScene(_menuSceneIndex);
     }
 
