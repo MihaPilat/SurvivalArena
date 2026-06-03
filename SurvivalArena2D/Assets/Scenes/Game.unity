@@ -16109,6 +16109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 441097196}
   - component: {fileID: 441097197}
+  - component: {fileID: 441097198}
   m_Layer: 5
   m_Name: PauseScreen
   m_TagString: Untagged
@@ -16155,6 +16156,28 @@ MonoBehaviour:
   _resumeButton: {fileID: 952974994}
   _exitButton: {fileID: 1355220365}
   _menuSceneIndex: 0
+--- !u!114 &441097198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441097195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4c2473b27358c43b6f7d242cc03b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickSound:
+    _clip: {fileID: 8300000, guid: 2789964c2450d59479c99c97fd5dbf6c, type: 3}
+    _volume: 0.5
+    _minPitch: 1
+    _maxPitch: 1
+  _showSound:
+    _clip: {fileID: 8300000, guid: 5afe620d005747543b593b4b5521364c, type: 3}
+    _volume: 0.5
+    _minPitch: 1
+    _maxPitch: 1
 --- !u!1001 &444679770
 PrefabInstance:
   m_ObjectHideFlags: 0

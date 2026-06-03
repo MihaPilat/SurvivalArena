@@ -7,7 +7,6 @@ using Zenject;
 public class PauseUI : MonoBehaviour
 {
     public event Action OnPauseOpened;
-    public event Action OnPauseClosed;
     public event Action OnResumeClicked;
     public event Action OnExitClicked;
 
@@ -92,7 +91,6 @@ public class PauseUI : MonoBehaviour
             .OnComplete(() => {
                 _panel.SetActive(false);
                 _pauseManager.SetPaused(false);
-                OnPauseClosed?.Invoke();
             });
     }
 
