@@ -17536,7 +17536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &495000592
 RectTransform:
   m_ObjectHideFlags: 0
@@ -99963,7 +99963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelBackgroundMusic:
     _clip: {fileID: 8300000, guid: 8e5b75ba41fb1d043a68eddf4c3877ef, type: 3}
-    _volume: 0.05
+    _volume: 0.5
     _minPitch: 1
     _maxPitch: 1
 --- !u!1001 &1103609974
