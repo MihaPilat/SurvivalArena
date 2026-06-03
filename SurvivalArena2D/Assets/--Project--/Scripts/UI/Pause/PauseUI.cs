@@ -13,7 +13,7 @@ public class PauseUI : MonoBehaviour
 
     [SerializeField] private GameObject _panel;
     [SerializeField] private RectTransform _windowRect;
-    [SerializeField] private CanvasGroup _canvasGroup; 
+    [SerializeField] private CanvasGroup _canvasGroup;
 
     [SerializeField] private Button _resumeButton;
     [SerializeField] private Button _exitButton;
@@ -23,6 +23,7 @@ public class PauseUI : MonoBehaviour
     private PauseManager _pauseManager;
     private IInput _input;
     private ISceneLoader _sceneLoader;
+
     [Inject]
     public void Construct(PauseManager pauseManager, IInput input, ISceneLoader sceneLoader)
     {
@@ -47,6 +48,7 @@ public class PauseUI : MonoBehaviour
             OnExitClicked?.Invoke();
             AnimateButtonClick(_exitButton, ExitToMenu);
         });
+
         _input.OnPausePressed += TogglePause;
     }
 
@@ -55,7 +57,7 @@ public class PauseUI : MonoBehaviour
         if (_panel.activeSelf)
         {
             OnResumeClicked?.Invoke();
-            AnimateButtonClick(_resumeButton, ResumeGame);
+            ResumeGame();
         }
         else
         {
@@ -96,7 +98,6 @@ public class PauseUI : MonoBehaviour
 
     private void ExitToMenu()
     {
-        _pauseManager.SetPaused(false);
         _sceneLoader.LoadScene(_menuSceneIndex);
     }
 
