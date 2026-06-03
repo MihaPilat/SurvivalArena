@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using DG.Tweening;
 using Zenject;
 using TMPro;
@@ -27,15 +26,18 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _bestRecordText;
 
     [SerializeField] private int _gameSceneIndex = 1;
+    [SerializeField] private int _menuSceneIndex = 0;
 
     private RecordsService _recordsService;
     private AudioService _audioService;
+    private ISceneLoader _sceneLoader;
 
     [Inject]
-    public void Construct(RecordsService recordsService, AudioService audioService)
+    public void Construct(RecordsService recordsService, AudioService audioService, ISceneLoader sceneLoader)
     {
         _recordsService = recordsService;
         _audioService = audioService;
+        _sceneLoader = sceneLoader;
     }
 
     private void Start()
@@ -78,7 +80,7 @@ public class MainMenuUI : MonoBehaviour
 
         DisplayBestRecord();
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        _sceneLoader.LoadScene(_menuSceneIndex);
     }
     private void DisplayBestRecord()
     {
@@ -101,7 +103,7 @@ public class MainMenuUI : MonoBehaviour
             });
     }
 
-    private void StartGame() => SceneManager.LoadScene(_gameSceneIndex);
+    private void StartGame() => _sceneLoader.LoadScene(_gameSceneIndex);
 
     private void OpenSettings()
     {

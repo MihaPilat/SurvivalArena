@@ -27699,6 +27699,8 @@ MonoBehaviour:
   _newRecordLabel: {fileID: 658747728}
   _restartButton: {fileID: 1922285428}
   _backToMenuButton: {fileID: 1573159043}
+  _gameSceneIndex: 1
+  _menuSceneIndex: 0
 --- !u!1001 &744740848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -172538,8 +172540,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1344981931}
-  - {fileID: 441097196}
   - {fileID: 738374230}
+  - {fileID: 441097196}
   m_Father: {fileID: 522181479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

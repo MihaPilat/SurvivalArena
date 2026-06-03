@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using DG.Tweening;
 using Zenject;
 
@@ -23,12 +22,13 @@ public class PauseUI : MonoBehaviour
 
     private PauseManager _pauseManager;
     private IInput _input;
-
+    private ISceneLoader _sceneLoader;
     [Inject]
-    public void Construct(PauseManager pauseManager, IInput input)
+    public void Construct(PauseManager pauseManager, IInput input, ISceneLoader sceneLoader)
     {
         _pauseManager = pauseManager;
         _input = input;
+        _sceneLoader = sceneLoader;
     }
 
     private void Start()
@@ -97,7 +97,7 @@ public class PauseUI : MonoBehaviour
     private void ExitToMenu()
     {
         _pauseManager.SetPaused(false);
-        SceneManager.LoadScene(_menuSceneIndex);
+        _sceneLoader.LoadScene(_menuSceneIndex);
     }
 
     private void AnimateButtonClick(Button button, Action onComplete)

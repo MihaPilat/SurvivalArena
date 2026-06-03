@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine.UI;
 using Zenject;
 using DG.Tweening;
-using UnityEngine.SceneManagement;
 using System;
 
 public class GameOverUI : MonoBehaviour
@@ -19,18 +18,23 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _backToMenuButton;
 
+    [SerializeField] private int _gameSceneIndex = 1;
+    [SerializeField] private int _menuSceneIndex = 0;
+
     private TimerService _timerService;
     private RecordsService _recordsService;
     private Character _character;
     private PauseManager _pauseManager;
+    private ISceneLoader _sceneLoader;
 
     [Inject]
-    public void Construct(TimerService timerService, RecordsService recordsService, Character character, PauseManager pauseManager)
+    public void Construct(TimerService timerService, RecordsService recordsService, Character character, PauseManager pauseManager, ISceneLoader sceneLoaderService)
     {
         _timerService = timerService;
         _recordsService = recordsService;
         _character = character;
         _pauseManager = pauseManager;
+        _sceneLoader = sceneLoaderService;
     }
 
     private void Start()
@@ -102,13 +106,14 @@ public class GameOverUI : MonoBehaviour
 
     private void BackToMenu()
     {
-        Debug.Log("Back to menu");
+        _pauseManager.SetPaused(false);
+        _sceneLoader.LoadScene(_menuSceneIndex);
     }
 
     private void RestartGame()
     {
         _pauseManager.SetPaused(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        _sceneLoader.LoadScene(_gameSceneIndex);
     }
 
     private void OnDestroy()
