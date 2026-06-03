@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Rogue2SpawnData
   m_EditorClassIdentifier: 
   Prefab: {fileID: 4946915542846481243, guid: 753744bb103c66a499448edbe123b189, type: 3}
-  Cost: 3
-  MinDangerLevel: 1
+  Cost: 30
+  MinDangerLevel: 4

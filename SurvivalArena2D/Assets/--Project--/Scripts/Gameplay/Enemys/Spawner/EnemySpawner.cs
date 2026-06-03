@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour, IWaveHandler
     [SerializeField] private float _maxSpawnRadius = 20f;
 
     [SerializeField] private int _maxEnemiesOnMap = 70;
-
+    [SerializeField] private float _dangerUpgradeInterval=30f;
     private Transform _characterTransform;
 
     private float _dangerTimer;
@@ -66,7 +66,7 @@ public class EnemySpawner : MonoBehaviour, IWaveHandler
         }
 
         _dangerTimer += Time.deltaTime;
-        if (_dangerTimer >= 60f)
+        if (_dangerTimer >= _dangerUpgradeInterval)
         {
             _dangerTimer = 0;
             _currentDangerLevel++;

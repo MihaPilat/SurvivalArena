@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb57dd8ec07e3d499971e8b23fd1f2a, type: 3}
   m_Name: BrightRobotConfig
   m_EditorClassIdentifier: 
-  Health: 40
+  Health: 45
   Speed: 2
   StopDistance: 1
   WaitingTime: 1
   ContactDamage: 5
-  ExpAmount: 10
+  ExpAmount: 15
   MinAttackRange: 5
   MaxAttackRange: 8
   AttackCooldown: 5

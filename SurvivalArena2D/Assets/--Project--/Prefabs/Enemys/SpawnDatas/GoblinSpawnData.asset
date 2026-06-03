@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GoblinSpawnData
   m_EditorClassIdentifier: 
   Prefab: {fileID: 493355870854115386, guid: a21d63a11dd0e984093a19869cdafe35, type: 3}
-  Cost: 4
-  MinDangerLevel: 1
+  Cost: 14
+  MinDangerLevel: 2

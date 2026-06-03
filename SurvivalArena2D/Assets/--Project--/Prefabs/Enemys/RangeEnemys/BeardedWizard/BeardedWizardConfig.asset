@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb57dd8ec07e3d499971e8b23fd1f2a, type: 3}
   m_Name: BeardedWizardConfig
   m_EditorClassIdentifier: 
-  Health: 20
+  Health: 50
   Speed: 1.4
   StopDistance: 1.5
   WaitingTime: 1
-  ContactDamage: 5
-  ExpAmount: 20
+  ContactDamage: 30
+  ExpAmount: 70
   MinAttackRange: 7
   MaxAttackRange: 12
   AttackCooldown: 8
@@ -25,6 +25,6 @@ MonoBehaviour:
   ProjectileSpeed: 6
   ProjectileLifetime: 3
   ProjectilePrefab: {fileID: 1170835258638870793, guid: 5bbf69f29bb12744899bf1f11e042aed, type: 3}
-  Damage: 5
+  Damage: 25
   MagicRadius: 1.5
   MagicColor: {r: 0, g: 1, b: 0, a: 1}

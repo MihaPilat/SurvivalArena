@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb57dd8ec07e3d499971e8b23fd1f2a, type: 3}
   m_Name: SkeletonConfig
   m_EditorClassIdentifier: 
-  Health: 24
+  Health: 20
   Speed: 1
   StopDistance: 1
   WaitingTime: 1
-  ContactDamage: 5
+  ContactDamage: 3
   ExpAmount: 10
   MinAttackRange: 5
   MaxAttackRange: 8
@@ -27,3 +27,4 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 0}
   Damage: 5
   MagicRadius: 1.5
+  MagicColor: {r: 0, g: 1, b: 0, a: 1}

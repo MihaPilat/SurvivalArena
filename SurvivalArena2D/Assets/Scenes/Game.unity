@@ -185192,7 +185192,8 @@ MonoBehaviour:
   _budgetGenerationRate: 10
   _minSpawnRadius: 10
   _maxSpawnRadius: 15
-  _maxEnemiesOnMap: 70
+  _maxEnemiesOnMap: 100
+  _dangerUpgradeInterval: 30
 --- !u!1001 &1862801727
 PrefabInstance:
   m_ObjectHideFlags: 0

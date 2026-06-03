@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ArcherSpawnData
   m_EditorClassIdentifier: 
   Prefab: {fileID: 866442335093641851, guid: b50a19570228a34488f93396d8ff4fdc, type: 3}
-  Cost: 20
-  MinDangerLevel: 1
+  Cost: 17
+  MinDangerLevel: 2

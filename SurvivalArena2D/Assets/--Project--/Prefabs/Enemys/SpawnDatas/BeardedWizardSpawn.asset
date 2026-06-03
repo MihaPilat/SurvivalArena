@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BeardedWizardSpawn
   m_EditorClassIdentifier: 
   Prefab: {fileID: 2728069711906347972, guid: 7c8e326a4e24edd488161c6fb3630bfc, type: 3}
-  Cost: 20
-  MinDangerLevel: 1
+  Cost: 40
+  MinDangerLevel: 4

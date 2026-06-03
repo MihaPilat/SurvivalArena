@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SkeletonSpawnData
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1804859825581848935, guid: 38f60f2e1b7c86245b84b3e9505ef6d2, type: 3}
-  Cost: 1
+  Cost: 3
   MinDangerLevel: 1

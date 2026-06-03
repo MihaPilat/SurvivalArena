@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb57dd8ec07e3d499971e8b23fd1f2a, type: 3}
   m_Name: GoblinConfig
   m_EditorClassIdentifier: 
-  Health: 30
-  Speed: 2.5
+  Health: 70
+  Speed: 2.6
   StopDistance: 1
   WaitingTime: 1
-  ContactDamage: 5
+  ContactDamage: 8
   ExpAmount: 25
   MinAttackRange: 5
   MaxAttackRange: 8

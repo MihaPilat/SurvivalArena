@@ -2047,6 +2047,10 @@ PrefabInstance:
       propertyPath: _enemyView
       value: 
       objectReference: {fileID: 6248310892936400885}
+    - target: {fileID: 5444763257309289185, guid: 809087524f7d1474db80e4ff410120fe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5780360259913122891, guid: 809087524f7d1474db80e4ff410120fe, type: 3}
       propertyPath: m_Height
       value: 0.24
